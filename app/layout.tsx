@@ -1,17 +1,20 @@
 import type { Metadata } from "next";
-import { Inter, Playfair_Display } from "next/font/google";
+import { Roboto, Philosopher } from "next/font/google";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import ChatWidget from "@/components/ChatWidget";
 import "./globals.css";
 
-const inter = Inter({
+const roboto = Roboto({
   subsets: ["latin"],
-  variable: "--font-inter",
+  weight: ["300", "400", "500", "700"],
+  variable: "--font-roboto",
 });
 
-const playfair = Playfair_Display({
+const philosopher = Philosopher({
   subsets: ["latin"],
-  variable: "--font-playfair",
+  weight: ["400", "700"],
+  variable: "--font-philosopher",
 });
 
 export const metadata: Metadata = {
@@ -27,11 +30,12 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body
-        className={`${inter.variable} ${playfair.variable} antialiased flex min-h-screen flex-col font-sans text-slate-600 bg-white selection:bg-gold-400 selection:text-white`}
+        className={`${roboto.variable} ${philosopher.variable} antialiased flex min-h-screen flex-col font-sans text-slate-600 bg-white selection:bg-accent selection:text-accent-foreground`}
       >
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />
+        <ChatWidget />
       </body>
     </html>
   );

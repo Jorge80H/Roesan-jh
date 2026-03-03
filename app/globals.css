@@ -23,15 +23,15 @@
   /* Slate 900 */
 
   /* Roesan Brand Colors */
-  --primary: #514b84;
-  /* Morado Roesan */
+  --primary: #51408d;
+  /* Morado Roesan Principal */
   --primary-foreground: #ffffff;
 
-  --secondary: #01bbef;
-  /* Cyan/Turquesa Roesan */
+  --secondary: #61bbe4;
+  /* Cyan Roesan */
   --secondary-foreground: #ffffff;
 
-  --accent: #f6ef45;
+  --accent: #fddf45;
   /* Amarillo Roesan */
   --accent-foreground: #2a2960;
 
@@ -53,7 +53,8 @@
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
 
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-roboto);
+  --font-serif: var(--font-philosopher);
   --font-mono: var(--font-geist-mono);
 }
 

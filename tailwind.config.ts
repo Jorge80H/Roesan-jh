@@ -12,32 +12,32 @@ export default {
                 background: "var(--background)",
                 foreground: "var(--foreground)",
                 primary: {
-                    DEFAULT: '#514b84', // Morado Roesan
+                    DEFAULT: '#51408d', // Morado Roesan Principal
                     foreground: '#ffffff',
                 },
                 secondary: {
-                    DEFAULT: '#01bbef', // Cyan Roesan
+                    DEFAULT: '#61bbe4', // Cyan Roesan
                     foreground: '#ffffff',
                 },
                 purple: {
-                    400: '#6b67a8',  // Lighter variation
-                    500: '#514b84',  // Primary
-                    600: '#3f3a6e',  // Darker variation
+                    400: '#6e5fa3',  // Lighter variation
+                    500: '#51408d',  // Primary
+                    600: '#3a2f7a',  // Darker variation
                     800: '#2a2960',  // Dark purple
-                    900: '#1e1d4a',  // Darkest
+                    900: '#201e3e',  // Darkest (Navy)
                 },
                 cyan: {
-                    400: '#20febe',  // Turquoise light
-                    500: '#01bbef',  // Primary cyan
-                    600: '#0099cc',  // Darker cyan
+                    400: '#89d4f0',  // Lighter cyan
+                    500: '#61bbe4',  // Primary cyan
+                    600: '#46a1cc',  // Darker cyan
                 },
                 yellow: {
-                    400: '#f6ef45',  // Accent yellow
+                    400: '#fddf45',  // Accent yellow
                 },
             },
             fontFamily: {
-                sans: ["var(--font-inter)", "sans-serif"],
-                serif: ["var(--font-playfair)", "serif"],
+                sans: ["var(--font-roboto)", "sans-serif"],
+                serif: ["var(--font-philosopher)", "serif"],
             },
             animation: {
                 'float': 'float 6s ease-in-out infinite',
