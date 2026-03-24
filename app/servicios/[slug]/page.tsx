@@ -23,6 +23,7 @@ export async function generateMetadata({ params }: Props) {
     return {
         title: `${service.title} | Roesan Seguros`,
         description: service.shortDescription,
+        keywords: service.seoKeywords?.join(", ") || "",
     };
 }
 
@@ -110,6 +111,20 @@ export default async function ServiceDetailPage({ params }: Props) {
                             </div>
                         </div>
 
+                        {service.faqs && service.faqs.length > 0 && (
+                            <div className="rounded-3xl bg-white p-8 shadow-xl ring-1 ring-slate-900/5">
+                                <h2 className="text-2xl font-bold text-slate-900 mb-6">Preguntas Frecuentes</h2>
+                                <div className="space-y-6">
+                                    {service.faqs.map((faq, idx) => (
+                                        <div key={idx} className={`${idx !== 0 ? 'border-t border-slate-100 pt-6' : ''}`}>
+                                            <h3 className="font-semibold text-slate-900 mb-2">{faq.question}</h3>
+                                            <p className="text-slate-600 leading-relaxed text-sm">{faq.answer}</p>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
+
                         <div className="rounded-3xl bg-slate-50 p-8 border border-slate-100">
                             <h2 className="text-xl font-bold text-slate-900 mb-4">Información Importante</h2>
                             <p className="text-slate-600 mb-4">
@@ -131,12 +146,7 @@ export default async function ServiceDetailPage({ params }: Props) {
 
                             <div className="w-full">
                                 <QuoteFunnel 
-                                    initialType={
-                                        service.slug === 'vehiculos' ? 'auto' : 
-                                        service.slug === 'vida-y-salud' ? 'salud' : 
-                                        service.slug === 'empresariales' ? 'empresarial' : 
-                                        'auto'
-                                    } 
+                                    initialType={service.quoteType as any || 'auto'} 
                                 />
                             </div>
 

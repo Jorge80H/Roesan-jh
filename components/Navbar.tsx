@@ -47,7 +47,8 @@ export function Navbar() {
                         {[
                             { name: "Inicio", href: "/" },
                             { name: "Nosotros", href: "/nosotros" },
-                            { name: "Servicios", href: "/servicios" },
+                            { name: "Seguros Empresas", href: "/servicios#empresas" },
+                            { name: "Seguros Personas", href: "/servicios#personas" },
                         ].map((link) => (
                             <Link
                                 key={link.name}
@@ -90,7 +91,8 @@ export function Navbar() {
                         {[
                             { name: "Inicio", href: "/" },
                             { name: "Nosotros", href: "/nosotros" },
-                            { name: "Servicios", href: "/servicios" },
+                            { name: "Seguros Empresas", href: "/servicios#empresas" },
+                            { name: "Seguros Personas", href: "/servicios#personas" },
                             { name: "Contáctanos", href: "/contacto", special: true },
                         ].map((link) => (
                             <Link
