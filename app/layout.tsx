@@ -4,7 +4,7 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import ChatWidget from "@/components/ChatWidget";
 import Script from "next/script";
-import { AnimatedBackground } from "@/components/ui/AnimatedBackground";
+import { UnicornBackground } from "@/components/ui/UnicornBackground";
 import "./globals.css";
 
 const roboto = Roboto({
@@ -77,9 +77,9 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body
-        className={`${roboto.variable} ${philosopher.variable} antialiased flex min-h-screen flex-col font-sans text-slate-600 bg-slate-50 relative bg-grid-pattern selection:bg-accent selection:text-accent-foreground`}
+        className={`${roboto.variable} ${philosopher.variable} antialiased flex min-h-screen flex-col font-sans text-slate-600 bg-slate-50 selection:bg-accent selection:text-accent-foreground`}
       >
-        <AnimatedBackground />
+        <UnicornBackground />
         <Navbar />
         <main className="relative z-10 flex-1">{children}</main>
         <div className="relative z-10"><Footer /></div>
