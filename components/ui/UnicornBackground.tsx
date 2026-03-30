@@ -44,16 +44,14 @@ export function UnicornBackground() {
                 aria-hidden="true"
                 className="fixed inset-0 w-full h-full z-0 overflow-hidden pointer-events-none"
             >
-                <div className="absolute inset-0 w-full h-full opacity-60 mix-blend-screen">
-                    <div
-                        data-us-project="WdVna2EGJHojbGLRHA52"
-                        data-us-dpi="1.5"
-                        data-us-fps="60"
-                        data-us-lazyload="true"
-                        data-us-production="true"
-                        className="absolute inset-0 w-full h-full"
-                    />
-                </div>
+                <div
+                    data-us-project="WdVna2EGJHojbGLRHA52"
+                    data-us-dpi="1.5"
+                    data-us-fps="60"
+                    data-us-lazyload="true"
+                    data-us-production="true"
+                    className="absolute inset-0 w-full h-full"
+                />
             </div>
         </>
     );
