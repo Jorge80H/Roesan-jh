@@ -20,10 +20,9 @@
   }
 
   .bg-grid-pattern {
-    background-image: radial-gradient(var(--muted-foreground) 1px, transparent 1px);
+    background-image: radial-gradient(rgba(100, 116, 139, 0.15) 1px, transparent 1px);
     background-size: 32px 32px;
     background-attachment: fixed;
-    opacity: 0.05;
   }
 }
 
