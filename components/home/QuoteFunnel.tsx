@@ -25,6 +25,7 @@ const Step2AutoSchema = z.object({
   city: z.string().min(2, 'La ciudad es requerida'),
   vehiclePlate: z.string().min(6, 'Placa no válida').max(6),
   vehicleYear: z.string().min(4, 'Año no válido').max(4),
+  driverBirthDate: z.string().optional(),
 });
 
 const Step2SaludSchema = z.object({
@@ -56,7 +57,9 @@ type FormData = z.infer<typeof Step1Schema> &
   Partial<z.infer<typeof Step2SaludSchema>> &
   Partial<z.infer<typeof Step2EmpresaSchema>> &
   Partial<z.infer<typeof Step2CumplimientoSchema>> &
-  Partial<z.infer<typeof Step3ContactSchema>>;
+  Partial<z.infer<typeof Step3ContactSchema>> & {
+    driverBirthDate?: string;
+  };
 
 // ─── Static Data ──────────────────────────────────────────────────────────────
 const insuranceTypes = [
@@ -124,7 +127,11 @@ export default function QuoteFunnel({ initialType = 'auto' }: QuoteFunnelProps) 
 
   const onSubmit = async (data: FormData) => {
     const isFinalValid = await trigger(['name', 'phone', 'email']);
-    if (!isFinalValid) return;
+    if (!isFinalValid) {
+      // Force re-render of error messages by re-triggering
+      await trigger(['name', 'phone', 'email']);
+      return;
+    }
 
     setIsSubmitting(true);
     try {
@@ -337,30 +344,44 @@ export default function QuoteFunnel({ initialType = 'auto' }: QuoteFunnelProps) 
 
                   {/* ── Auto ── */}
                   {selectedType === 'auto' && (
-                    <div className="grid grid-cols-2 gap-3">
-                      <div className="space-y-1.5">
-                        <label className="text-sm font-medium text-gray-700">Placa *</label>
-                        <Input
-                          {...register('vehiclePlate')}
-                          placeholder="AAA123"
-                          maxLength={6}
-                          className={`uppercase ${errors.vehiclePlate ? 'border-red-500' : ''}`}
-                        />
-                        {errors.vehiclePlate && <span className="text-red-500 text-xs">{errors.vehiclePlate.message}</span>}
-                        <p className="text-xs text-gray-400">Identificamos el modelo exacto</p>
+                    <>
+                      <div className="grid grid-cols-2 gap-3">
+                        <div className="space-y-1.5">
+                          <label className="text-sm font-medium text-gray-700">Placa *</label>
+                          <Input
+                            {...register('vehiclePlate')}
+                            placeholder="AAA123"
+                            maxLength={6}
+                            className={`uppercase ${errors.vehiclePlate ? 'border-red-500' : ''}`}
+                          />
+                          {errors.vehiclePlate && <span className="text-red-500 text-xs">{errors.vehiclePlate.message}</span>}
+                          <p className="text-xs text-gray-400">Identificamos el modelo exacto</p>
+                        </div>
+                        <div className="space-y-1.5">
+                          <label className="text-sm font-medium text-gray-700">Año *</label>
+                          <Input
+                            type="number"
+                            {...register('vehicleYear')}
+                            placeholder="2021"
+                            maxLength={4}
+                            className={errors.vehicleYear ? 'border-red-500' : ''}
+                          />
+                          {errors.vehicleYear && <span className="text-red-500 text-xs">{errors.vehicleYear.message}</span>}
+                        </div>
                       </div>
                       <div className="space-y-1.5">
-                        <label className="text-sm font-medium text-gray-700">Año *</label>
+                        <label className="text-sm font-medium text-gray-700">
+                          Fecha de Nacimiento del Conductor
+                          <span className="ml-1.5 text-xs font-normal text-amber-600">(importante para calcular la tarifa exacta)</span>
+                        </label>
                         <Input
-                          type="number"
-                          {...register('vehicleYear')}
-                          placeholder="2021"
-                          maxLength={4}
-                          className={errors.vehicleYear ? 'border-red-500' : ''}
+                          type="date"
+                          {...register('driverBirthDate')}
+                          className="text-gray-600"
                         />
-                        {errors.vehicleYear && <span className="text-red-500 text-xs">{errors.vehicleYear.message}</span>}
+                        <p className="text-xs text-gray-400">Opcional — ayuda a personalizar el precio según tu perfil de conductor</p>
                       </div>
-                    </div>
+                    </>
                   )}
 
                   {/* ── Salud ── */}
