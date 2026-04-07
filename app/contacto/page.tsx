@@ -58,7 +58,7 @@ export default function ContactPage() {
 
     const getWhatsAppLink = () => {
         const msg = encodeURIComponent(`Hola, me contacté por la web de ROESAN. Soy ${formData.name || 'un visitante'} y me interesa asesoría sobre ${formData.topic || 'seguros'}.`);
-        return `https://wa.me/576016294040?text=${msg}`;
+        return `https://wa.me/573002114998?text=${msg}`;
     };
 
     return (
@@ -125,7 +125,7 @@ export default function ContactPage() {
 
                         {/* WhatsApp quick-access card */}
                         <motion.a
-                            href="https://wa.me/576016294040"
+                            href="https://wa.me/573002114998"
                             target="_blank"
                             rel="noopener noreferrer"
                             initial={{ opacity: 0, x: -20 }}

@@ -108,7 +108,7 @@ export function Footer() {
                         </h4>
                         <div className="flex gap-3">
                             <a
-                                href="https://wa.me/576016294040"
+                                href="https://wa.me/573002114998"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="w-9 h-9 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-emerald-600 hover:text-white transition-all"

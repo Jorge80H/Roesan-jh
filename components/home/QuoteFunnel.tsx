@@ -220,7 +220,7 @@ export default function QuoteFunnel({ initialType = 'auto' }: QuoteFunnelProps) 
           </div>
 
           <a
-            href={`https://wa.me/576016294040?text=${getWhatsAppMessage()}`}
+            href={`https://wa.me/573002114998?text=${getWhatsAppMessage()}`}
             target="_blank"
             rel="noopener noreferrer"
             className="w-full flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#1ebe5d] text-white font-semibold py-3 px-6 rounded-xl transition-colors mb-3"
