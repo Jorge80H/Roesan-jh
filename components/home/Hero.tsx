@@ -18,7 +18,7 @@ const slides = [
     {
         image: "/images/hero-empresa.png",
         tag: "Seguros Empresariales",
-        title: "Tu empresa, blindada",
+        title: "Asesoría que protege tu empresa",
         subtitle: "Soluciones integrales para proteger tu operación, empleados y patrimonio con el respaldo de las mejores aseguradoras.",
         overlayColor: "from-slate-950/80 via-slate-900/60 to-transparent",
     },
@@ -43,7 +43,7 @@ export function Hero() {
     }, []);
 
     useEffect(() => {
-        const timer = setInterval(next, 6000);
+        const timer = setInterval(next, 9000);
         return () => clearInterval(timer);
     }, [next]);
 

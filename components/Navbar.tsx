@@ -44,10 +44,10 @@ export function Navbar() {
                     {/* Desktop Menu */}
                     <div className="hidden md:flex items-center gap-8">
                         {[
+                            { name: "Inicio", href: "/" },
                             { name: "Seguros Personas", href: "/servicios/personas" },
                             { name: "Seguros Empresas", href: "/servicios/empresas" },
                             { name: "Quiénes Somos", href: "/nosotros" },
-                            { name: "Contacto", href: "/contacto" },
                             { name: "Blog", href: "/blog" },
                         ].map((link) => (
                             <Link
@@ -89,10 +89,10 @@ export function Navbar() {
                 <div className="md:hidden glass-panel border-t border-slate-200 animate-in fade-in slide-in-from-top-4 duration-300">
                     <div className="space-y-1 px-4 pb-6 pt-4">
                         {[
+                            { name: "Inicio", href: "/" },
                             { name: "Seguros Personas", href: "/servicios/personas" },
                             { name: "Seguros Empresas", href: "/servicios/empresas" },
                             { name: "Quiénes Somos", href: "/nosotros" },
-                            { name: "Contacto", href: "/contacto" },
                             { name: "Blog", href: "/blog" },
                         ].map((link) => (
                             <Link
@@ -104,10 +104,17 @@ export function Navbar() {
                                 {link.name}
                             </Link>
                         ))}
+                        <Link
+                            href="/contacto"
+                            className="mt-3 flex items-center justify-center gap-2 rounded-full bg-purple-800 px-4 py-3 text-base font-medium text-white transition-all hover:bg-purple-900"
+                            onClick={() => setIsOpen(false)}
+                        >
+                            <span>Contáctanos</span>
+                            <ArrowRight className="h-4 w-4" />
+                        </Link>
                     </div>
                 </div>
             )}
         </nav>
     );
 }
-
