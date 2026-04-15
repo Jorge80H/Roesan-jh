@@ -5,10 +5,14 @@ import Image from "next/image";
 
 const footerLinks = {
     servicios: [
-        { label: "Vida y Salud", href: "/servicios/vida-y-salud" },
-        { label: "Vehículos", href: "/servicios/vehiculos" },
         { label: "Empresariales", href: "/servicios/empresas" },
         { label: "Personas y Hogar", href: "/servicios/personas" },
+        { label: "Vida", href: "/servicios/vida" },
+        { label: "Salud", href: "/servicios/salud" },
+        { label: "Autos", href: "/servicios/autos" },
+        { label: "ARL y Vida Grupo", href: "/servicios/arl-vida-grupo" },
+        { label: "Cumplimiento", href: "/servicios/cumplimiento" },
+        { label: "Copropiedades", href: "/servicios/copropiedades" },
     ],
     empresa: [
         { label: "Nosotros", href: "/nosotros" },

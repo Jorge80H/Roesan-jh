@@ -8,7 +8,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import {
   Car, HeartPulse, Building2, FileCheck,
   ArrowRight, ArrowLeft, CheckCircle2, Loader2,
-  Lock, Clock, MessageCircle, Star, Shield,
+  Lock, Clock, MessageCircle, Star, Shield, Award,
 } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -49,7 +49,7 @@ const Step2CumplimientoSchema = z.object({
 
 const Step3ContactSchema = z.object({
   name: z.string().min(3, 'El nombre completo es requerido'),
-  phone: z.string().min(10, 'El celular debe tener 10 dígitos'),
+  phone: z.string().refine((val) => val.replace(/\s/g, '').length === 10, 'El celular debe tener 10 dígitos'),
   email: z.string().email('Correo electrónico inválido'),
 });
 
@@ -71,10 +71,10 @@ const insuranceTypes = [
 ];
 
 const step2Titles: Record<string, { title: string; sub: string }> = {
-  auto: { title: 'Datos de tu vehículo', sub: 'Usamos la placa para encontrar las mejores tarifas exactas para tu modelo' },
-  salud: { title: 'Tu perfil de salud', sub: 'Con esto encontramos el plan que mejor cubre tu situación familiar' },
-  empresarial: { title: 'Tu empresa', sub: 'En 2 minutos tenemos un perfil de riesgo preciso para tu operación' },
-  cumplimiento: { title: 'Tu contrato', sub: 'Con esto identificamos la aseguradora con mejores cupos de cumplimiento' },
+  auto: { title: 'Datos de tu vehículo', sub: 'Con esta información te asesoramos para elegir la cobertura que realmente necesitas' },
+  salud: { title: 'Tu perfil de salud', sub: 'Con esto te orientamos hacia el plan que mejor se adapta a tu situación familiar' },
+  empresarial: { title: 'Tu empresa', sub: 'Con este perfil te acompañamos a tomar la mejor decisión para proteger tu operación' },
+  cumplimiento: { title: 'Tu contrato', sub: 'Con esto te asesoramos para elegir la aseguradora más adecuada para tu contrato' },
 };
 
 const socialProofMessages = [
@@ -102,7 +102,7 @@ export default function QuoteFunnel({ initialType = 'auto' }: QuoteFunnelProps) 
     setValue,
     trigger,
     getValues,
-    formState: { errors },
+    formState: { errors, dirtyFields, touchedFields },
   } = useForm<FormData>({
     defaultValues: { type: initialType },
   });
@@ -212,11 +212,11 @@ export default function QuoteFunnel({ initialType = 'auto' }: QuoteFunnelProps) 
             ¡Tu solicitud está en manos de un experto!
           </h3>
           <p className="text-gray-500 text-base mb-2 leading-relaxed max-w-sm">
-            Revisaremos tu perfil y te enviaremos las mejores opciones del mercado.
+            Un asesor revisará tu perfil y te acompañará a tomar la mejor decisión.
           </p>
           <div className="flex items-center gap-2 text-sm text-emerald-700 font-medium bg-emerald-50 rounded-full px-4 py-2 mb-8">
             <Clock className="w-4 h-4" />
-            Tiempo de respuesta promedio: <strong>menos de 2 horas</strong>
+            Te contactaremos a la brevedad en horario hábil
           </div>
 
           <a
@@ -247,42 +247,14 @@ export default function QuoteFunnel({ initialType = 'auto' }: QuoteFunnelProps) 
   // ─── Main Form ──────────────────────────────────────────────────────────────
   return (
     <Card className="w-full max-w-xl mx-auto border border-white/30 overflow-hidden bg-white/95 backdrop-blur-lg shadow-[0_8px_32px_rgba(0,0,0,0.25)]">
-      {/* Progress Header */}
-      <div className="px-6 pt-5 pb-3 border-b border-gray-100">
-        <div className="flex items-center justify-between mb-3">
-          {stepLabels.map((label, i) => {
-            const num = i + 1;
-            const isCompleted = step > num;
-            const isActive = step === num;
-            return (
-              <div key={label} className="flex items-center gap-2">
-                <div
-                  className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold transition-all ${
-                    isCompleted
-                      ? 'bg-emerald-500 text-white'
-                      : isActive
-                      ? 'bg-primary text-white ring-4 ring-primary/20'
-                      : 'bg-gray-100 text-gray-400'
-                  }`}
-                >
-                  {isCompleted ? '✓' : num}
-                </div>
-                <span className={`hidden sm:block text-xs font-medium ${isActive ? 'text-gray-900 font-bold' : isCompleted ? 'text-emerald-600' : 'text-gray-400'}`}>
-                  {label}
-                </span>
-                {i < stepLabels.length - 1 && (
-                  <div className={`flex-1 h-0.5 w-10 sm:w-16 mx-2 rounded transition-all ${step > num ? 'bg-emerald-400' : 'bg-gray-100'}`} />
-                )}
-              </div>
-            );
-          })}
-        </div>
-        <div className="w-full bg-gray-100 h-1 rounded-full">
-          <div
-            className="bg-primary h-full rounded-full transition-all duration-500 ease-in-out"
-            style={{ width: `${(step / 3) * 100}%` }}
-          />
-        </div>
+      {/* Sleek Premium Progress Header */}
+      <div className="relative h-1.5 w-full bg-slate-100 z-10">
+        <motion.div
+           className="absolute top-0 left-0 h-full bg-gradient-to-r from-emerald-400 to-emerald-600"
+           initial={{ width: '33%' }}
+           animate={{ width: `${(step / 3) * 100}%` }}
+           transition={{ duration: 0.5, ease: 'easeInOut' }}
+        />
       </div>
 
       <CardContent className="p-6 sm:p-8">
@@ -357,11 +329,14 @@ export default function QuoteFunnel({ initialType = 'auto' }: QuoteFunnelProps) 
                   {/* Ciudad — always visible */}
                   <div className="space-y-1.5">
                     <label className="text-sm font-medium text-gray-700">Ciudad de residencia / operación *</label>
-                    <Input
-                      {...register('city')}
-                      placeholder="Ej. Bogotá, Medellín, Cali..."
-                      className={errors.city ? 'border-red-500' : ''}
-                    />
+                    <div className="relative">
+                      <Input
+                        {...register('city')}
+                        placeholder="Ej. Bogotá, Medellín, Cali..."
+                        className={`transition-all ${errors.city ? 'border-red-500 focus-visible:ring-red-500' : 'focus-visible:ring-emerald-500/30'} pr-10`}
+                      />
+                      {!errors.city && dirtyFields.city && <CheckCircle2 className="w-4 h-4 text-emerald-500 absolute right-3 top-3" />}
+                    </div>
                     {errors.city && <span className="text-red-500 text-xs">{errors.city.message}</span>}
                   </div>
 
@@ -371,24 +346,32 @@ export default function QuoteFunnel({ initialType = 'auto' }: QuoteFunnelProps) 
                       <div className="grid grid-cols-2 gap-3">
                         <div className="space-y-1.5">
                           <label className="text-sm font-medium text-gray-700">Placa *</label>
-                          <Input
-                            {...register('vehiclePlate')}
-                            placeholder="AAA123"
-                            maxLength={6}
-                            className={`uppercase ${errors.vehiclePlate ? 'border-red-500' : ''}`}
-                          />
+                          <div className="relative">
+                            <Input
+                              {...register('vehiclePlate', {
+                                onChange: (e) => setValue('vehiclePlate', e.target.value.toUpperCase())
+                              })}
+                              placeholder="AAA123"
+                              maxLength={6}
+                              className={`uppercase transition-all ${errors.vehiclePlate ? 'border-red-500 focus-visible:ring-red-500' : 'focus-visible:ring-emerald-500/30'} pr-10`}
+                            />
+                            {!errors.vehiclePlate && getValues('vehiclePlate')?.length === 6 && <CheckCircle2 className="w-4 h-4 text-emerald-500 absolute right-3 top-3" />}
+                          </div>
                           {errors.vehiclePlate && <span className="text-red-500 text-xs">{errors.vehiclePlate.message}</span>}
-                          <p className="text-xs text-gray-400">Identificamos el modelo exacto</p>
+                          <p className="text-xs text-gray-400">Identificamos el modelo</p>
                         </div>
                         <div className="space-y-1.5">
                           <label className="text-sm font-medium text-gray-700">Año *</label>
-                          <Input
-                            type="number"
-                            {...register('vehicleYear')}
-                            placeholder="2021"
-                            maxLength={4}
-                            className={errors.vehicleYear ? 'border-red-500' : ''}
-                          />
+                          <div className="relative">
+                            <Input
+                              type="number"
+                              {...register('vehicleYear')}
+                              placeholder="2021"
+                              maxLength={4}
+                              className={`transition-all ${errors.vehicleYear ? 'border-red-500 focus-visible:ring-red-500' : 'focus-visible:ring-emerald-500/30'} pr-10`}
+                            />
+                            {!errors.vehicleYear && getValues('vehicleYear')?.length === 4 && <CheckCircle2 className="w-4 h-4 text-emerald-500 absolute right-3 top-3" />}
+                          </div>
                           {errors.vehicleYear && <span className="text-red-500 text-xs">{errors.vehicleYear.message}</span>}
                         </div>
                       </div>
@@ -476,12 +459,21 @@ export default function QuoteFunnel({ initialType = 'auto' }: QuoteFunnelProps) 
                       </div>
                       <div className="space-y-1.5">
                         <label className="text-sm font-medium text-gray-700">Valor Estimado (COP) *</label>
-                        <Input
-                          type="number"
-                          {...register('contractValue')}
-                          placeholder="Sin puntos ni comas (Ej. 50000000)"
-                          className={errors.contractValue ? 'border-red-500' : ''}
-                        />
+                        <div className="relative">
+                          <Input
+                            type="text"
+                            {...register('contractValue', {
+                              onChange: (e) => {
+                                const numeric = e.target.value.replace(/\D/g, '');
+                                const formatted = numeric.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+                                setValue('contractValue', formatted);
+                              }
+                            })}
+                            placeholder="Ej. 50.000.000"
+                            className={`transition-all ${errors.contractValue ? 'border-red-500 focus-visible:ring-red-500' : 'focus-visible:ring-emerald-500/30'} pr-10`}
+                          />
+                          {!errors.contractValue && getValues('contractValue')?.length >= 4 && <CheckCircle2 className="w-4 h-4 text-emerald-500 absolute right-3 top-3" />}
+                        </div>
                         {errors.contractValue && <span className="text-red-500 text-xs">{errors.contractValue.message}</span>}
                       </div>
                     </>
@@ -518,14 +510,25 @@ export default function QuoteFunnel({ initialType = 'auto' }: QuoteFunnelProps) 
                   <div className="space-y-1.5">
                     <label className="text-sm font-medium text-gray-700">
                       Celular WhatsApp *
-                      <span className="ml-1 text-xs text-emerald-600 font-normal">Te enviamos las propuestas aquí</span>
+                      <span className="ml-1 text-xs text-emerald-600 font-normal">Te enviaremos propuestas aquí</span>
                     </label>
-                    <Input
-                      type="tel"
-                      {...register('phone')}
-                      placeholder="300 000 0000"
-                      className={errors.phone ? 'border-red-500' : ''}
-                    />
+                    <div className="relative">
+                      <Input
+                        type="tel"
+                        {...register('phone', {
+                          onChange: (e) => {
+                            let val = e.target.value.replace(/\D/g, '');
+                            if (val.length > 3 && val.length <= 6) val = `${val.slice(0, 3)} ${val.slice(3)}`;
+                            else if (val.length > 6) val = `${val.slice(0, 3)} ${val.slice(3, 6)} ${val.slice(6, 10)}`;
+                            setValue('phone', val);
+                          }
+                        })}
+                        placeholder="300 000 0000"
+                        maxLength={12}
+                        className={`transition-all ${errors.phone ? 'border-red-500 focus-visible:ring-red-500' : 'focus-visible:ring-emerald-500/30'} pr-10`}
+                      />
+                      {!errors.phone && getValues('phone')?.replace(/\s/g, '').length === 10 && <CheckCircle2 className="w-4 h-4 text-emerald-500 absolute right-3 top-3" />}
+                    </div>
                     {errors.phone && <span className="text-red-500 text-xs">{errors.phone.message}</span>}
                   </div>
 
@@ -617,6 +620,15 @@ export default function QuoteFunnel({ initialType = 'auto' }: QuoteFunnelProps) 
           </div>
         </form>
       </CardContent>
+
+      <div className="bg-slate-50 border-t border-gray-100 py-3 px-6 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-xs font-semibold text-gray-500">
+        <span className="flex items-center gap-1.5 text-gray-900"><Award className="w-4 h-4 text-emerald-600" /> Operamos con:</span>
+        <span className="opacity-80">SURA</span>
+        <span className="w-1 h-1 rounded-full bg-gray-300"></span>
+        <span className="opacity-80">Allianz</span>
+        <span className="w-1 h-1 rounded-full bg-gray-300"></span>
+        <span className="opacity-80">Bolívar</span>
+      </div>
     </Card>
   );
 }

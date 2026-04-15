@@ -70,6 +70,7 @@ export const blogPosts: BlogPost[] = [
         readTime: "6 min",
         category: "Seguro de Vida",
         categoryColor: "bg-rose-100 text-rose-700",
+        coverImage: "/images/card-salud-co.png",
         content: [
             {
                 type: "intro",
@@ -113,6 +114,7 @@ export const blogPosts: BlogPost[] = [
         readTime: "6 min",
         category: "Educación Financiera",
         categoryColor: "bg-blue-100 text-blue-700",
+        coverImage: "/images/card-todo-riesgo-globo.png",
         content: [
             {
                 type: "intro",
@@ -269,6 +271,7 @@ export const blogPosts: BlogPost[] = [
         readTime: "5 min",
         category: "Seguro de Vida",
         categoryColor: "bg-rose-100 text-rose-700",
+        coverImage: "/images/card-seguro-vida-bogota.png",
         content: [
             {
                 type: "intro",

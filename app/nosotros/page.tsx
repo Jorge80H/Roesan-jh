@@ -91,16 +91,16 @@ export default function AboutPage() {
 
                             <div className="prose prose-lg text-slate-600">
                                 <p className="text-xl font-medium text-slate-800 mb-6">
-                                    Más de 40 años protegiendo lo que más importa.
+                                    Más de 40 años de historia familiar al servicio de Colombia.
                                 </p>
                                 <p>
-                                    Fundada en <strong>1982</strong> por <strong>Roberto Estrada Ángel</strong>, Roesan nació con la visión de ofrecer un servicio de seguros con un enfoque humano y personalizado en Colombia.
+                                    En <strong>1982</strong>, <strong>Roberto Estrada Ángel</strong> fundó Roesan con una convicción simple: los seguros se construyen sobre la confianza. Su esposa, <strong>María Eugenia Estrada</strong>, tomó las riendas del negocio y durante décadas fue ella quien forjó la reputación, las relaciones y la solidez que hoy nos definen.
                                 </p>
                                 <p>
-                                    Hoy, liderada por la segunda generación familiar con <strong>María Eugenia Estrada</strong> al frente, la empresa continúa innovando y adaptándose a las necesidades del mercado sin perder su esencia: la cercanía con cada cliente.
+                                    <strong>Carmen Eugenia Estrada</strong>, su hija, creció en este oficio. Trabajó junto a su madre durante años, aprendió cada detalle del negocio y hoy lidera Roesan con el mismo compromiso de siempre, sumando una visión renovada del sector.
                                 </p>
                                 <p>
-                                    Con alianzas estratégicas con las principales aseguradoras del país, ofrecemos la capacidad de comparar y encontrar la mejor opción para cada perfil de riesgo.
+                                    Con la incorporación de <strong>Jonathan y Ana Lucía</strong> como nuevos socios, Roesan abre un nuevo capítulo: el mismo legado familiar, con la energía y las herramientas para seguir creciendo.
                                 </p>
                             </div>
                         </motion.div>

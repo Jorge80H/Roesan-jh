@@ -44,8 +44,8 @@ export function Navbar() {
                     {/* Desktop Menu */}
                     <div className="hidden md:flex items-center gap-8">
                         {[
-                            { name: "Seguros para Personas", href: "/servicios/personas" },
-                            { name: "Seguros para Empresa", href: "/servicios/empresas" },
+                            { name: "Seguros Personas", href: "/servicios/personas" },
+                            { name: "Seguros Empresas", href: "/servicios/empresas" },
                             { name: "Quiénes Somos", href: "/nosotros" },
                             { name: "Contacto", href: "/contacto" },
                             { name: "Blog", href: "/blog" },
@@ -89,8 +89,8 @@ export function Navbar() {
                 <div className="md:hidden glass-panel border-t border-slate-200 animate-in fade-in slide-in-from-top-4 duration-300">
                     <div className="space-y-1 px-4 pb-6 pt-4">
                         {[
-                            { name: "Seguros para Personas", href: "/servicios/personas" },
-                            { name: "Seguros para Empresa", href: "/servicios/empresas" },
+                            { name: "Seguros Personas", href: "/servicios/personas" },
+                            { name: "Seguros Empresas", href: "/servicios/empresas" },
                             { name: "Quiénes Somos", href: "/nosotros" },
                             { name: "Contacto", href: "/contacto" },
                             { name: "Blog", href: "/blog" },

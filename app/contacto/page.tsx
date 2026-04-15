@@ -89,8 +89,7 @@ export default function ContactPage() {
                         transition={{ delay: 0.2 }}
                         className="mt-4 text-lg text-slate-300 max-w-xl mx-auto"
                     >
-                        Respondemos en <strong className="text-white">menos de 4 horas</strong> en horario hábil.
-                        Generalmente mucho antes.
+                        Un asesor te contactará a la brevedad posible en horario hábil.
                     </motion.p>
                 </Container>
             </div>
@@ -103,7 +102,7 @@ export default function ContactPage() {
                         {[
                             { icon: MapPin, title: "Visítanos", content: "Calle 109 #19-36 of. 203, Bogotá", color: "text-primary", bg: "bg-purple-50", delay: 0 },
                             { icon: Phone, title: "Llámanos", content: "+57 601 629 4040", color: "text-primary", bg: "bg-purple-50", delay: 0.1 },
-                            { icon: Mail, title: "Escríbenos", content: "administrativo@roesan.com.co", color: "text-primary", bg: "bg-purple-50", delay: 0.2 },
+                            { icon: Mail, title: "Escríbenos", content: "comercial@roesan.com", color: "text-primary", bg: "bg-purple-50", delay: 0.2 },
                             { icon: Clock, title: "Horario de atención", content: "Lun–Vie: 8:30 am – 5:30 pm", color: "text-primary", bg: "bg-purple-50", delay: 0.3 },
                         ].map((item) => (
                             <motion.div
@@ -171,7 +170,7 @@ export default function ContactPage() {
                                     </div>
                                     <h3 className="text-xl font-bold text-slate-900">¡Solicitud recibida!</h3>
                                     <p className="mt-2 text-slate-500 text-sm max-w-xs">
-                                        Un asesor de ROESAN revisará tu caso y te responderá en menos de 4 horas.
+                                        Un asesor de ROESAN revisará tu caso y te contactará a la brevedad posible.
                                     </p>
 
                                     <a
