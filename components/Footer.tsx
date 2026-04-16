@@ -43,11 +43,11 @@ export function Footer() {
                         </p>
                         {/* Quick Contact */}
                         <div className="space-y-3">
-                            <a href="tel:+576016294040" className="flex items-center gap-3 text-sm hover:text-white transition-colors group">
+                            <a href="tel:+573002114998" className="flex items-center gap-3 text-sm hover:text-white transition-colors group">
                                 <div className="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center group-hover:bg-purple-700 transition-colors">
                                     <Phone className="w-3.5 h-3.5" />
                                 </div>
-                                +57 601 629 4040
+                                +57 3002114998
                             </a>
                             <a href="mailto:comercial@roesan.com" className="flex items-center gap-3 text-sm hover:text-white transition-colors group">
                                 <div className="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center group-hover:bg-purple-700 transition-colors">
@@ -59,13 +59,13 @@ export function Footer() {
                                 <div className="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center flex-shrink-0 mt-0.5">
                                     <MapPin className="w-3.5 h-3.5" />
                                 </div>
-                                Calle 109 #19-36 of. 203, Bogotá
+                                Calle 109 #19-36 of. 203, Bogotá, Colombia
                             </div>
                             <div className="flex items-center gap-3 text-sm">
                                 <div className="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center">
                                     <Clock className="w-3.5 h-3.5" />
                                 </div>
-                                Lun–Vie: 8:30am – 5:30pm
+                                Lun–Vie: 8:30 am – 5:00 pm
                             </div>
                         </div>
                     </div>

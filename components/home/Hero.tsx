@@ -56,7 +56,7 @@ export function Hero() {
     const slide = slides[current];
 
     return (
-        <section className="relative mt-24 md:mt-28 mb-12 mx-4 md:mx-8 lg:mx-12 rounded-3xl overflow-hidden bg-slate-900 min-h-[550px] shadow-2xl">
+        <section className="relative mt-24 md:mt-28 mb-12 mx-5 md:mx-10 lg:mx-auto lg:max-w-[1460px] xl:max-w-[1420px] rounded-3xl overflow-hidden bg-slate-900 min-h-[550px] shadow-2xl">
             {/* Background Images — Crossfade */}
             <AnimatePresence mode="wait" initial={false}>
                 <motion.div

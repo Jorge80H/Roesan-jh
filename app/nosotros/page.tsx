@@ -2,7 +2,7 @@
 
 import React from "react";
 import { Container } from "@/components/ui/Container";
-import { Shield, Users, Target, Heart, Award, Handshake } from "lucide-react";
+import { Users, Target, Award, Handshake, Sparkles, Landmark, ShieldCheck } from "lucide-react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 
@@ -66,13 +66,13 @@ export default function AboutPage() {
                         transition={{ delay: 0.2 }}
                         className="mx-auto mt-6 max-w-2xl text-lg text-slate-300"
                     >
-                        Más de 40 años construyendo relaciones de confianza y protegiendo el patrimonio de las familias colombianas.
+                        Más de 40 años acompañando a familias, empresas y empresarios con confianza, criterio y respaldo real.
                     </motion.p>
                 </Container>
             </section>
 
             {/* History Section */}
-            <section className="py-24">
+            <section className="py-24 bg-[radial-gradient(circle_at_top_left,_rgba(97,187,228,0.08),_transparent_24%),radial-gradient(circle_at_bottom_right,_rgba(81,64,141,0.08),_transparent_24%)]">
                 <Container>
                     <div className="grid gap-16 lg:grid-cols-2 lg:items-center">
                         <motion.div
@@ -84,23 +84,72 @@ export default function AboutPage() {
                         >
                             <div className="flex items-center gap-4">
                                 <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                                    <Users className="h-6 w-6" />
+                                    <Sparkles className="h-6 w-6" />
                                 </div>
-                                <h2 className="text-3xl font-bold tracking-tight text-slate-900">El Legado Roesan</h2>
+                                <h2 className="text-3xl font-bold tracking-tight text-slate-900">Un legado construido con confianza</h2>
                             </div>
 
-                            <div className="prose prose-lg text-slate-600">
-                                <p className="text-xl font-medium text-slate-800 mb-6">
-                                    Más de 40 años de historia familiar al servicio de Colombia.
-                                </p>
+                            <div className="space-y-6 text-[1.05rem] leading-8 text-slate-600 [text-align:justify]">
+                                <div className="rounded-2xl border border-primary/10 bg-white/80 p-6 shadow-sm backdrop-blur-sm">
+                                    <p className="text-xl font-medium text-slate-900 [text-align:justify]">
+                                        Durante más de <strong>40 años</strong>, en <strong>Roesan</strong> hemos acompañado a familias,
+                                        empresas y empresarios en Colombia con una convicción que sigue intacta:
+                                        los seguros se basan en la <strong>confianza</strong>, el <strong>respaldo</strong> y la
+                                        tranquilidad de saber que siempre hay alguien respondiendo.
+                                    </p>
+                                </div>
+
                                 <p>
-                                    En <strong>1982</strong>, <strong>Roberto Estrada Ángel</strong> fundó Roesan con una convicción simple: los seguros se construyen sobre la confianza. Su esposa, <strong>María Eugenia Estrada</strong>, tomó las riendas del negocio y durante décadas fue ella quien forjó la reputación, las relaciones y la solidez que hoy nos definen.
+                                    Nuestra historia comenzó en <strong>1982</strong>, cuando{" "}
+                                    <strong>Roberto Estrada Ángel</strong> fundó <strong>Roesan</strong> con una visión clara:
+                                    construir una empresa cercana, seria y confiable.
+                                    Años después, <strong>María Eugenia Estrada</strong> asumió el liderazgo y se convirtió en el gran
+                                    pilar de nuestra consolidación. Con una trayectoria destacada en <strong>Seguros Bolívar</strong>,
+                                    donde desarrolló una carrera ejemplar y fue reconocida en múltiples ocasiones por su desempeño
+                                    comercial, logró fortalecer una relación de respaldo y confianza con la compañía que nos ha
+                                    acompañado durante décadas.
                                 </p>
+
                                 <p>
-                                    <strong>Carmen Eugenia Estrada</strong>, su hija, creció en este oficio. Trabajó junto a su madre durante años, aprendió cada detalle del negocio y hoy lidera Roesan con el mismo compromiso de siempre, sumando una visión renovada del sector.
+                                    Pero nuestro verdadero legado no se ha construido solo vendiendo pólizas. Durante más de cuatro
+                                    décadas, hemos asesorado a clientes corporativos y personales en las decisiones más importantes
+                                    para proteger su patrimonio, sus negocios, sus familias y su futuro. Hemos estado presentes en
+                                    cada etapa: desde la prevención y la planeación, hasta el acompañamiento cercano en momentos
+                                    críticos, incluyendo reclamaciones y siniestros, cuando más se necesita experiencia y respaldo.
                                 </p>
+
                                 <p>
-                                    Con la incorporación de <strong>Jonathan y Ana Lucía</strong> como nuevos socios, Roesan abre un nuevo capítulo: el mismo legado familiar, con la energía y las herramientas para seguir creciendo.
+                                    Hoy, ese legado continúa con <strong>Carmen Eugenia Estrada</strong>, quien creció dentro de este
+                                    oficio, aprendiendo de cerca cada detalle del negocio junto a su madre. Después de años de formación
+                                    y experiencia, hoy lidera <strong>Roesan</strong> con el mismo compromiso de servicio que nos ha
+                                    caracterizado siempre, sumando una visión moderna, estratégica y cercana a las nuevas necesidades
+                                    del mercado.
+                                </p>
+
+                                <p>
+                                    Actualmente trabajamos con más de <strong>nueve aseguradoras líderes del país</strong>, lo que nos
+                                    permite ofrecer a cada cliente un portafolio amplio de soluciones, opciones competitivas y una
+                                    asesoría verdaderamente personalizada. Nuestro valor está en entender cada necesidad y encontrar
+                                    la mejor alternativa con independencia, criterio y conocimiento.
+                                </p>
+
+                                <div className="rounded-2xl border border-cyan-200/60 bg-cyan-50/70 p-6">
+                                    <p className="text-slate-700 [text-align:justify]">
+                                        En <strong>2026</strong> iniciamos una nueva etapa: nuestra <strong>renovación digital</strong>.
+                                        Este proceso nace con un propósito claro: evolucionar junto con el mundo y seguir siendo el
+                                        aliado de confianza de nuestros clientes en una época de transformación acelerada. Estamos
+                                        incorporando tecnología, optimizando procesos y fortaleciendo nuestros canales de atención
+                                        para ofrecer una experiencia más ágil, cercana y eficiente, sin perder lo que siempre nos ha
+                                        diferenciado: el <strong>trato humano</strong>, la <strong>experiencia</strong> y el{" "}
+                                        <strong>compromiso real</strong>.
+                                    </p>
+                                </div>
+
+                                <p className="text-lg font-medium text-slate-900 [text-align:justify]">
+                                    En <strong>Roesan</strong> no solo protegemos riesgos. Construimos relaciones de largo plazo, damos
+                                    tranquilidad y acompañamos a nuestros clientes con la experiencia de un legado familiar que ha
+                                    sabido adaptarse, crecer y responder con solidez en cada momento. Porque proteger bien no es solo
+                                    tener una póliza: es contar con un aliado que esté a tu lado cuando más importa.
                                 </p>
                             </div>
                         </motion.div>
@@ -111,7 +160,7 @@ export default function AboutPage() {
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.8 }}
-                            className="relative lg:h-[500px]"
+                            className="relative lg:h-[620px]"
                         >
                             <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-secondary/20 rounded-3xl transform rotate-3" />
                             <div className="relative h-full w-full overflow-hidden rounded-3xl shadow-xl ring-1 ring-slate-900/5 group">
@@ -131,6 +180,30 @@ export default function AboutPage() {
                                     </div>
                                     <h3 className="text-2xl font-bold">Fundada en 1982</h3>
                                     <p className="mt-1 text-slate-200">40+ Años de Experiencia</p>
+                                </div>
+                            </div>
+
+                            <div className="relative z-20 -mt-20 mx-6 grid gap-4 rounded-[1.8rem] border border-slate-200 bg-white/95 p-6 shadow-2xl backdrop-blur-sm sm:grid-cols-3">
+                                <div>
+                                    <div className="mb-3 inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+                                        <Landmark className="h-5 w-5" />
+                                    </div>
+                                    <p className="text-sm font-semibold text-slate-900">Fundación</p>
+                                    <p className="text-sm text-slate-500"><strong>1982</strong> marcó el inicio de una historia familiar sólida.</p>
+                                </div>
+                                <div>
+                                    <div className="mb-3 inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+                                        <ShieldCheck className="h-5 w-5" />
+                                    </div>
+                                    <p className="text-sm font-semibold text-slate-900">Respaldo</p>
+                                    <p className="text-sm text-slate-500">Más de <strong>9 aseguradoras líderes</strong> para asesoría independiente.</p>
+                                </div>
+                                <div>
+                                    <div className="mb-3 inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+                                        <Sparkles className="h-5 w-5" />
+                                    </div>
+                                    <p className="text-sm font-semibold text-slate-900">Nueva etapa</p>
+                                    <p className="text-sm text-slate-500"><strong>2026</strong> impulsa nuestra renovación digital con foco humano.</p>
                                 </div>
                             </div>
                         </motion.div>

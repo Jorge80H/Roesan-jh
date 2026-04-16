@@ -7,23 +7,91 @@ import Image from "next/image";
 import QuoteFunnel from "@/components/home/QuoteFunnel";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import type { ProductId } from "@/components/home/QuoteFunnel";
+import type { Metadata } from "next";
+import type { ServiceData } from "@/lib/services-data";
 
 // Using native Next.js params typing
 type Props = {
     params: Promise<{ slug: string }>;
 };
 
+function buildSeoTitle(service: ServiceData) {
+    const audience = service.category === "empresa" ? "para empresas" : "para personas y familias";
+    return `${service.title} en Colombia ${audience} | Roesan Seguros`;
+}
+
+function buildSeoDescription(service: ServiceData) {
+    const target = service.category === "empresa" ? "tu empresa" : "ti y tu familia";
+    return `Cotiza ${service.title.toLowerCase()} en Colombia con asesoría experta. ${service.shortDescription} En Roesan te ayudamos a comparar coberturas, beneficios y condiciones para proteger a ${target}.`;
+}
+
+function buildSeoParagraphs(service: ServiceData) {
+    const keyword = service.seoKeywords[0] ?? service.title.toLowerCase();
+    const secondaryKeyword = service.seoKeywords[1] ?? service.title.toLowerCase();
+    const features = service.features.slice(0, 3).map((feature) => feature.title.toLowerCase()).join(", ");
+
+    if (service.category === "empresa") {
+        return [
+            `Si tu empresa está buscando ${keyword}, esta cobertura te ayuda a proteger la operación, el patrimonio y la continuidad del negocio con soluciones ajustadas al tamaño, sector y exposición al riesgo de cada organización. En Roesan analizamos el contexto real de la compañía para estructurar una póliza alineada con sus obligaciones, activos y necesidades de respaldo.`,
+            `${service.title} permite fortalecer la estabilidad financiera de la empresa frente a eventos que pueden afectar contratos, mercancías, empleados, instalaciones o reclamaciones de terceros. Entre los amparos y enfoques más consultados se encuentran ${features}, así como coberturas complementarias que pueden adaptarse a la actividad económica de cada cliente.`,
+            `Además de cotizar ${secondaryKeyword}, acompañamos a nuestros clientes en la revisión de condiciones, deducibles, exclusiones, límites asegurados y requerimientos documentales. Esto permite tomar decisiones mejor informadas y contratar una protección empresarial con criterio técnico, lenguaje claro y acompañamiento cercano durante todo el proceso.`,
+        ];
+    }
+
+    return [
+        `Si estás buscando ${keyword}, esta página reúne información clave para entender cómo funciona esta póliza, qué coberturas suele incluir y qué factores conviene evaluar antes de contratarla. En Roesan acompañamos a personas y familias en Colombia para encontrar alternativas bien estructuradas, competitivas y alineadas con su etapa de vida.`,
+        `${service.title} es una opción de protección pensada para brindar tranquilidad financiera ante situaciones que pueden impactar tu salud, patrimonio, vehículo, vivienda o estabilidad familiar. Dentro de los beneficios más consultados se encuentran ${features}, además de opciones adicionales que se ajustan al perfil y presupuesto de cada asegurado.`,
+        `Al cotizar ${secondaryKeyword} con asesoría, no solo comparas precios: también revisas coberturas reales, periodos de carencia, asistencias, exclusiones, valores asegurados y condiciones de reclamación. Esa combinación entre información y acompañamiento ayuda a elegir una póliza más útil, clara y coherente con lo que realmente necesitas proteger.`,
+    ];
+}
+
+function buildIdealForItems(service: ServiceData) {
+    if (service.category === "empresa") {
+        return [
+            `Empresas que necesitan ${service.title.toLowerCase()} con respaldo técnico y comparativo entre aseguradoras.`,
+            "Negocios que buscan proteger su operación, patrimonio, contratos o colaboradores con una solución a la medida.",
+            "Organizaciones que quieren acompañamiento experto en cotización, emisión, renovación y siniestros.",
+        ];
+    }
+
+    return [
+        `Personas y familias que quieren cotizar ${service.title.toLowerCase()} con una asesoría clara y personalizada.`,
+        "Clientes que desean comparar coberturas, beneficios y costos antes de tomar una decisión.",
+        "Hogares que valoran un acompañamiento cercano durante la contratación y el proceso de reclamación.",
+    ];
+}
+
 // Generate metadata for SEO with async handling
-export async function generateMetadata({ params }: Props) {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const resolvedParams = await params;
     const service = servicesData.find((s) => s.slug === resolvedParams.slug);
 
     if (!service) return { title: "Servicio no encontrado" };
 
+    const title = buildSeoTitle(service);
+    const description = buildSeoDescription(service);
+    const canonical = `/servicios/${service.slug}`;
+
     return {
-        title: `${service.title} | Roesan Seguros`,
-        description: service.shortDescription,
+        title,
+        description,
         keywords: service.seoKeywords?.join(", ") || "",
+        alternates: {
+            canonical,
+        },
+        openGraph: {
+            title,
+            description,
+            url: canonical,
+            type: "article",
+            images: service.image ? [{ url: service.image, alt: service.title }] : undefined,
+        },
+        twitter: {
+            card: "summary_large_image",
+            title,
+            description,
+            images: service.image ? [service.image] : undefined,
+        },
     };
 }
 
@@ -41,6 +109,45 @@ export default async function ServiceDetailPage({ params }: Props) {
     if (!service) {
         notFound();
     }
+
+    const seoParagraphs = buildSeoParagraphs(service);
+    const idealForItems = buildIdealForItems(service);
+    const canonicalUrl = `https://roesan.com.co/servicios/${service.slug}`;
+    const jsonLd = {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "Service",
+                name: service.title,
+                description: buildSeoDescription(service),
+                serviceType: service.category === "empresa" ? "Seguro empresarial" : "Seguro para personas",
+                provider: {
+                    "@type": "InsuranceAgency",
+                    name: "Roesan Seguros",
+                    url: "https://roesan.com.co",
+                },
+                areaServed: {
+                    "@type": "Country",
+                    name: "Colombia",
+                },
+                url: canonicalUrl,
+                keywords: service.seoKeywords.join(", "),
+            },
+            ...(service.faqs?.length
+                ? [{
+                    "@type": "FAQPage",
+                    mainEntity: service.faqs.map((faq) => ({
+                        "@type": "Question",
+                        name: faq.question,
+                        acceptedAnswer: {
+                            "@type": "Answer",
+                            text: faq.answer,
+                        },
+                    })),
+                }]
+                : []),
+        ],
+    };
 
     const initialProductMap: Record<string, ProductId> = {
         vida: "seguro-vida",
@@ -63,6 +170,10 @@ export default async function ServiceDetailPage({ params }: Props) {
 
     return (
         <div className="bg-white pb-24">
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            />
             {/* Hero Header */}
             <section className="relative overflow-hidden py-24 lg:py-32">
                 {/* Background Image / Overlay */}
@@ -139,6 +250,47 @@ export default async function ServiceDetailPage({ params }: Props) {
                                         </p>
                                     </div>
                                 ))}
+                            </div>
+                        </div>
+
+                        <div className="rounded-3xl bg-white p-8 shadow-xl ring-1 ring-slate-900/5">
+                            <h2 className="text-2xl font-bold text-slate-900 mb-4">
+                                {service.title} en Colombia: coberturas, beneficios y asesoría
+                            </h2>
+                            <div className="space-y-4 text-slate-600 leading-8 [text-align:justify]">
+                                {seoParagraphs.map((paragraph, index) => (
+                                    <p key={index}>{paragraph}</p>
+                                ))}
+                            </div>
+                        </div>
+
+                        <div className="grid gap-8 xl:grid-cols-[1.2fr_0.8fr]">
+                            <div className="rounded-3xl bg-slate-50 p-8 border border-slate-100">
+                                <h2 className="text-xl font-bold text-slate-900 mb-4">
+                                    ¿Para quién es ideal este {service.category === "empresa" ? "seguro empresarial" : "seguro"}?
+                                </h2>
+                                <div className="space-y-4">
+                                    {idealForItems.map((item, index) => (
+                                        <div key={index} className="flex gap-3">
+                                            <CheckCircle2 className="mt-0.5 h-5 w-5 text-emerald-500 shrink-0" />
+                                            <p className="text-slate-600 leading-relaxed">{item}</p>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+
+                            <div className="rounded-3xl bg-slate-950 p-8 text-white shadow-xl">
+                                <h2 className="text-xl font-bold mb-4">Búsquedas relacionadas</h2>
+                                <div className="flex flex-wrap gap-3">
+                                    {service.seoKeywords.map((keyword) => (
+                                        <span
+                                            key={keyword}
+                                            className="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-sm text-white/85"
+                                        >
+                                            {keyword}
+                                        </span>
+                                    ))}
+                                </div>
                             </div>
                         </div>
 

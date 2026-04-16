@@ -47,6 +47,22 @@ export default function PersonasHubPage() {
                     >
                         Protege tu vida, tu salud y tu patrimonio con pólizas diseñadas a tu medida.
                     </motion.p>
+                    <motion.div
+                        initial={{ opacity: 0, y: 12 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.3 }}
+                        className="mt-8"
+                    >
+                        <Link href="#cotiza-tu-seguro" className="inline-flex">
+                            <Button
+                                variant="secondary"
+                                size="lg"
+                                className="bg-white !text-purple-900 font-semibold hover:bg-slate-100"
+                            >
+                                Cotiza tu seguro
+                            </Button>
+                        </Link>
+                    </motion.div>
                 </Container>
             </section>
 
@@ -98,7 +114,7 @@ export default function PersonasHubPage() {
                 </Container>
             </section>
 
-            <section className="bg-slate-950 py-20">
+            <section id="cotiza-tu-seguro" className="bg-slate-950 py-20 scroll-mt-28">
                 <Container className="max-w-5xl">
                     <QuoteFunnel />
                 </Container>

@@ -58,6 +58,18 @@ export default function EmpresasHubPage() {
                     >
                         Blinda tu negocio, protege a tus empleados y asegura la continuidad de tus operaciones corporativas.
                     </motion.p>
+                    <motion.div
+                        initial={{ opacity: 0, y: 12 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.3 }}
+                        className="mt-8"
+                    >
+                        <Link href="#cotiza-tu-seguro" className="inline-flex">
+                            <Button variant="primary" size="lg" className="bg-purple-600 hover:bg-purple-700 text-white">
+                                Cotiza tu seguro
+                            </Button>
+                        </Link>
+                    </motion.div>
                 </Container>
             </section>
 
@@ -109,7 +121,7 @@ export default function EmpresasHubPage() {
                 </Container>
             </section>
 
-            <section className="bg-slate-950 py-20">
+            <section id="cotiza-tu-seguro" className="bg-slate-950 py-20 scroll-mt-28">
                 <Container className="max-w-5xl">
                     <QuoteFunnel />
                 </Container>
