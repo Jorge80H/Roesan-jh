@@ -4,11 +4,12 @@ import React from "react";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { motion } from "framer-motion";
-import { ArrowRight, CheckCircle2, HelpCircle } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { servicesData } from "@/lib/services-data";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
+import QuoteFunnel from "@/components/home/QuoteFunnel";
 
 export default function PersonasHubPage() {
     const personasServices = servicesData.filter(s => s.category === "persona");
@@ -94,6 +95,12 @@ export default function PersonasHubPage() {
                             </Link>
                         ))}
                     </div>
+                </Container>
+            </section>
+
+            <section className="bg-slate-950 py-20">
+                <Container className="max-w-5xl">
+                    <QuoteFunnel />
                 </Container>
             </section>
 

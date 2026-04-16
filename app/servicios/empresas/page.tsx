@@ -4,14 +4,26 @@ import React from "react";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { motion } from "framer-motion";
-import { ArrowRight, CheckCircle2, HelpCircle } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { servicesData } from "@/lib/services-data";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
+import QuoteFunnel from "@/components/home/QuoteFunnel";
 
 export default function EmpresasHubPage() {
-    const empresasServices = servicesData.filter(s => s.category === "empresa");
+    const order = [
+        "empresariales",
+        "transporte",
+        "cumplimiento",
+        "responsabilidad-civil-empresarial",
+        "colectivos",
+        "arl-vida-grupo",
+        "copropiedades",
+    ];
+    const empresasServices = order
+        .map((slug) => servicesData.find((service) => service.slug === slug))
+        .filter(Boolean) as typeof servicesData;
 
     return (
         <div className="bg-white">
@@ -94,6 +106,12 @@ export default function EmpresasHubPage() {
                             </Link>
                         ))}
                     </div>
+                </Container>
+            </section>
+
+            <section className="bg-slate-950 py-20">
+                <Container className="max-w-5xl">
+                    <QuoteFunnel />
                 </Container>
             </section>
 

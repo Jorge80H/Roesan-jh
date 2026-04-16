@@ -37,12 +37,26 @@ export default function ContactPage() {
         setStatus("loading");
 
         try {
+            const createdAt = Date.now();
             await db.transact(
                 db.tx.contact_messages[id()].create({
                     ...formData,
-                    createdAt: Date.now(),
+                    createdAt,
                 })
             );
+            fetch("/api/lead-notify", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    origin: "Contacto",
+                    createdAt,
+                    leadName: formData.name,
+                    leadPhone: formData.phone,
+                    leadEmail: formData.email,
+                    topic: formData.topic,
+                    message: formData.message,
+                }),
+            }).catch(console.error);
             setStatus("success");
             setFormData({ name: "", phone: "", email: "", topic: "", message: "" });
         } catch (err) {

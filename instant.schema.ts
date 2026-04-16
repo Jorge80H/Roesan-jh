@@ -26,6 +26,10 @@ const _schema = i.schema({
             name: i.string(),
             phone: i.string(),
             email: i.string().indexed(),
+            customerType: i.string().optional(),
+            lastName: i.string().optional(),
+            selectedProducts: i.string().optional(),
+            message: i.string().optional(),
             city: i.string().optional(),
             // Auto
             vehiclePlate: i.string().optional(),
@@ -41,6 +45,7 @@ const _schema = i.schema({
             // Empresa
             companyName: i.string().optional(),
             companyNit: i.string().optional(),
+            responsibleName: i.string().optional(),
             companySector: i.string().optional(),
             companyEmployees: i.string().optional(),
             companyRisk: i.string().optional(),
