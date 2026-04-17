@@ -27,7 +27,7 @@ export default function AboutPage() {
         { name: "Ana Lucia Grueso H", role: "Gerente" },
         { name: "Patricia Ortegón", role: "Directora Administrativa", image: "/images/equipo/Patricia.jpeg" },
         { name: "Federico López", role: "Gestor Comercial", image: "/images/equipo/Federico.jpeg", position: "object-[center_20%]" },
-        { name: "Adriana Garzón", role: "Ejecutiva de Autos", image: "/images/equipo/Adriana.png", position: "object-[center_15%]" },
+        { name: "Adriana Garzón", role: "Ejecutiva de Autos" },
         { name: "Jose Rodríguez", role: "Ejecutivo Líneas Personales", image: "/images/equipo/Jose.jpeg" },
         { name: "Alejandro Sarmiento", role: "Auxiliar Operativo", image: "/images/equipo/Alejandro.jpeg" },
     ];
