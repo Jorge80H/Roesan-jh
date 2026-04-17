@@ -196,7 +196,7 @@ export default async function BlogPostPage({ params }: Props) {
                                 href="/contacto"
                                 className="inline-flex items-center justify-center gap-2 rounded-full bg-white/10 border border-white/30 px-8 py-3 text-sm font-semibold text-white hover:bg-white/20 transition-colors"
                             >
-                                Solicitar asesoría gratuita
+                                Solicitar asesoría
                             </Link>
                         </div>
                     </div>

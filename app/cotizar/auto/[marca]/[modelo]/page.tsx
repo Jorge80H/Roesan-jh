@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     if (!car) return {};
 
     const title = `Seguro Todo Riesgo para ${car.marca} ${car.modelo} | Precios 2026`;
-    const description = `Cotiza tu seguro todo riesgo para ${car.marca} ${car.modelo} en Colombia. Compara precios desde $${car.precioMensualEstimado.toLocaleString("es-CO")} mensuales. Asesoría experta y gratuita.`;
+    const description = `Cotiza tu seguro todo riesgo para ${car.marca} ${car.modelo} en Colombia. Compara precios desde $${car.precioMensualEstimado.toLocaleString("es-CO")} mensuales. Asesoría experta.`;
 
     return {
         title,
@@ -46,21 +46,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export async function generateStaticParams() {
     return getAllCarSlugs();
 }
-
-const testimonials = [
-    {
-        quote: "Pude cotizar rápidamente el seguro de mi carro sin complicaciones. La asesoría fue excelente.",
-        author: "Felipe T.",
-        location: "Bogotá",
-        stars: 5,
-    },
-    {
-        quote: "No sabía si asegurar mi vehículo valía la pena hasta que vi la comparativa que me enviaron, la mejor inversión.",
-        author: "María V.",
-        location: "Medellín",
-        stars: 5,
-    },
-];
 
 export default async function CarInsuranceLandingPage({ params }: Props) {
     const { marca, modelo } = await params;
@@ -198,35 +183,6 @@ export default async function CarInsuranceLandingPage({ params }: Props) {
                                 </p>
                             </div>
                         </div>
-
-                        <div className="grid md:grid-cols-2 gap-6">
-                            {testimonials.map((t, i) => (
-                                <div key={i} className="bg-slate-50 rounded-2xl p-6 border border-slate-100">
-                                    <div className="flex gap-0.5 mb-3">
-                                        {Array.from({ length: t.stars }).map((_, s) => (
-                                            <Star key={s} className="w-4 h-4 text-amber-400 fill-amber-400" />
-                                        ))}
-                                    </div>
-                                    <p className="text-slate-700 text-sm leading-relaxed italic mb-4">
-                                        &ldquo;{t.quote}&rdquo;
-                                    </p>
-                                    <div className="flex items-center gap-2">
-                                        <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center text-primary font-bold text-sm">
-                                            {t.author[0]}
-                                        </div>
-                                        <div>
-                                            <p className="text-sm font-semibold text-slate-900">{t.author}</p>
-                                            <p className="text-xs text-slate-500">{t.location}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-
-                        <div className="mt-10 flex flex-col sm:flex-row items-center justify-between gap-4 bg-primary/5 border border-primary/20 rounded-2xl px-6 py-4 text-center sm:text-left">
-                            <div className="flex items-center gap-3">
-                                <Clock className="w-5 h-5 text-primary shrink-0" />
-                                <p className="text-sm text-slate-700 font-medium">
                                     Protege tu {car.modelo} sin papeleos interminables. Requisitos sencillos y ágiles.
                                 </p>
                             </div>

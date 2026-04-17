@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useRef } from "react";
 import { Container } from "@/components/ui/Container";
 import { Users, Target, Award, Handshake, Sparkles, Landmark, ShieldCheck } from "lucide-react";
 import { motion } from "framer-motion";
@@ -12,6 +12,25 @@ export default function AboutPage() {
         animate: { opacity: 1, y: 0 },
         transition: { duration: 0.6 }
     };
+
+    const sliderRef = useRef<HTMLDivElement>(null);
+    const scrollLeft = () => {
+        if (sliderRef.current) sliderRef.current.scrollBy({ left: -320, behavior: 'smooth' });
+    };
+    const scrollRight = () => {
+        if (sliderRef.current) sliderRef.current.scrollBy({ left: 320, behavior: 'smooth' });
+    };
+
+    const team = [
+        { name: "Carmen Eugenia Estrada Grueso", role: "Gerente General" },
+        { name: "Jonathan Jordan", role: "Gerente" },
+        { name: "Ana Lucia Grueso H", role: "Gerente" },
+        { name: "Patricia Ortegón", role: "Directora Administrativa" },
+        { name: "Federico López", role: "Gestor Comercial" },
+        { name: "Adriana Garzón", role: "Ejecutiva de Autos" },
+        { name: "Jose Rodríguez", role: "Ejecutivo Líneas Personales" },
+        { name: "Alejandro Sarmiento", role: "Auxiliar Operativo" },
+    ];
 
     const values = [
         {
@@ -45,11 +64,20 @@ export default function AboutPage() {
     ];
 
     return (
-        <div className="bg-white">
+        <div className="bg-transparent">
             {/* Hero Section */}
-            <section className="relative overflow-hidden bg-slate-900 pt-36 pb-24 lg:pt-48 lg:pb-32">
-                <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-[0.05]" />
-                <div className="absolute top-0 right-0 -mr-24 -mt-24 h-96 w-96 rounded-full bg-primary blur-[100px] opacity-20" />
+            <section className="relative overflow-hidden pt-36 pb-24 lg:pt-48 lg:pb-32 bg-slate-900">
+                <div className="absolute inset-0 z-0">
+                    <Image
+                        src="/images/banner_nosotros.png"
+                        alt="Equipo Roesan Seguros"
+                        fill
+                        className="object-cover opacity-80"
+                        priority
+                    />
+                    <div className="absolute inset-0 bg-slate-900/30 mix-blend-multiply" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-slate-900/20 to-transparent" />
+                </div>
 
                 <Container className="relative text-center">
                     <motion.h1
@@ -163,24 +191,14 @@ export default function AboutPage() {
                             className="relative lg:h-[620px]"
                         >
                             <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-secondary/20 rounded-3xl transform rotate-3" />
-                            <div className="relative h-full w-full overflow-hidden rounded-3xl shadow-xl ring-1 ring-slate-900/5 group">
-                                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent z-10" />
+                            <div className="relative h-full w-full overflow-hidden rounded-3xl shadow-xl ring-1 ring-slate-900/5 group bg-slate-900">
                                 <Image
-                                    src="/images/bogota-chapinero-1980.png"
-                                    alt="Chapinero, Bogotá, 1982 – Fundación de Roesan"
+                                    src="/images/sede_roesan_clean_v2.png"
+                                    alt="Sede Roesan"
                                     fill
                                     className="object-cover transition-transform duration-700 group-hover:scale-105"
                                     priority
                                 />
-
-                                <div className="absolute bottom-0 left-0 right-0 p-8 text-white z-20">
-                                    <div className="mb-2 flex items-center gap-2">
-                                        <div className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
-                                        <span className="text-sm font-medium text-emerald-100">Sede Principal - Bogotá</span>
-                                    </div>
-                                    <h3 className="text-2xl font-bold">Fundada en 1982</h3>
-                                    <p className="mt-1 text-slate-200">40+ Años de Experiencia</p>
-                                </div>
                             </div>
 
                             <div className="relative z-20 -mt-20 mx-6 grid gap-4 rounded-[1.8rem] border border-slate-200 bg-white/95 p-6 shadow-2xl backdrop-blur-sm sm:grid-cols-3">
@@ -211,8 +229,56 @@ export default function AboutPage() {
                 </Container>
             </section>
 
+            {/* Team Section */}
+            <section className="py-24 bg-[#1e103c] overflow-hidden relative">
+                <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-[0.05]" />
+                <Container className="relative z-10">
+                    <div className="flex flex-col sm:flex-row justify-between items-end gap-6 mb-16">
+                        <div>
+                            <span className="text-sm font-semibold tracking-wider text-cyan-400 uppercase">Nuestro Equipo</span>
+                            <h2 className="mt-2 text-4xl font-serif font-medium text-white">Conoce a las personas<br />detrás de Roesan.</h2>
+                        </div>
+                    </div>
+
+                    <div className="relative overflow-hidden flex pb-8 group">
+                        {/* Gradient masks for infinite scroll effect */}
+                        <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-[#1e103c] to-transparent z-10 pointer-events-none" />
+                        <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-[#1e103c] to-transparent z-10 pointer-events-none" />
+
+                        <div className="animate-marquee flex gap-6 hover:animate-pause">
+                            {[...team, ...team].map((member, idx) => (
+                                <div
+                                    key={idx}
+                                    className="shrink-0 w-[280px] bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl p-8 hover:bg-white/10 transition-all hover:scale-105 duration-300 cursor-pointer"
+                                >
+                                    <div className="h-20 w-20 bg-gradient-to-tr from-purple-900/50 to-purple-800/50 rounded-full mb-6 flex items-center justify-center shadow-inner overflow-hidden relative group-hover:from-purple-600 group-hover:to-purple-500 transition-colors border border-white/5">
+                                        <div className="absolute inset-0 bg-cyan-400/20 opacity-0 group-hover:opacity-100 transition-opacity" />
+                                        <UserCircle2 className="w-10 h-10 text-purple-200 group-hover:text-cyan-400 transition-colors relative z-10" />
+                                    </div>
+                                    <h3 className="text-xl font-bold text-white mb-2 leading-tight">{member.name}</h3>
+                                    <p className="text-cyan-400 text-sm font-medium">{member.role}</p>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </Container>
+                
+                <style dangerouslySetInnerHTML={{__html: `
+                    @keyframes scroll {
+                        0% { transform: translateX(0); }
+                        100% { transform: translateX(calc(-50% - 12px)); }
+                    }
+                    .animate-marquee {
+                        animation: scroll 35s linear infinite;
+                    }
+                    .animate-pause {
+                        animation-play-state: paused;
+                    }
+                `}} />
+            </section>
+
             {/* Values Section */}
-            <section className="bg-slate-50 py-24">
+            <section className="bg-transparent py-24">
                 <Container>
                     <div className="mb-16">
                         <span className="text-sm font-semibold tracking-wider text-slate-400 uppercase">Nuestros Valores</span>
@@ -234,7 +300,7 @@ export default function AboutPage() {
                                     <value.icon className="h-7 w-7" />
                                 </div>
                                 <h3 className="mb-3 text-xl font-bold text-slate-900">{value.title}</h3>
-                                <p className="text-slate-600 leading-relaxed">{value.description}</p>
+                                <p className="text-slate-600 leading-relaxed text-justify">{value.description}</p>
                             </motion.div>
                         ))}
                     </div>

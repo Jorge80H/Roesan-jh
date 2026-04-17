@@ -224,7 +224,7 @@ export default async function ServiceDetailPage({ params }: Props) {
                         <h1 className="font-serif text-4xl font-medium tracking-tight text-white sm:text-5xl lg:text-6xl mb-6 leading-[1.1]">
                             {service.title}
                         </h1>
-                        <p className="text-xl text-white/90 leading-relaxed max-w-2xl text-shadow">
+                        <p className="text-xl text-white/90 leading-relaxed max-w-2xl text-shadow text-justify">
                             {service.fullDescription}
                         </p>
                     </div>
@@ -245,7 +245,7 @@ export default async function ServiceDetailPage({ params }: Props) {
                                             <CheckCircle2 className={`h-5 w-5 ${service.color.replace('text-', 'text-opacity-80 ')}`} />
                                             {feature.title}
                                         </h3>
-                                        <p className="text-sm text-slate-600 leading-relaxed">
+                                        <p className="text-sm text-slate-600 leading-relaxed text-justify">
                                             {feature.desc}
                                         </p>
                                     </div>
@@ -301,7 +301,7 @@ export default async function ServiceDetailPage({ params }: Props) {
                                     {service.faqs.map((faq, idx) => (
                                         <div key={idx} className={`${idx !== 0 ? 'border-t border-slate-100 pt-6' : ''}`}>
                                             <h3 className="font-semibold text-slate-900 mb-2">{faq.question}</h3>
-                                            <p className="text-slate-600 leading-relaxed text-sm">{faq.answer}</p>
+                                            <p className="text-slate-600 leading-relaxed text-sm text-justify">{faq.answer}</p>
                                         </div>
                                     ))}
                                 </div>
@@ -310,10 +310,10 @@ export default async function ServiceDetailPage({ params }: Props) {
 
                         <div className="rounded-3xl bg-slate-50 p-8 border border-slate-100">
                             <h2 className="text-xl font-bold text-slate-900 mb-4">Información Importante</h2>
-                            <p className="text-slate-600 mb-4">
+                            <p className="text-slate-600 mb-4 text-justify">
                                 Cada póliza tiene condiciones específicas que se adaptan a tu perfil. Nuestros asesores analizarán tu caso para ofrecerte la mejor opción del mercado.
                             </p>
-                            <p className="text-sm text-slate-500 italic">
+                            <p className="text-sm text-slate-500 italic text-justify">
                                 * Aplican términos y condiciones de cada aseguradora aliada.
                             </p>
                         </div>
@@ -325,7 +325,7 @@ export default async function ServiceDetailPage({ params }: Props) {
                             <h3 className="text-xl font-bold text-slate-900 mb-2 px-4 pt-4">
                                 {service.category === 'empresa' ? 'Solicita asesoría empresarial' : 'Solicita tu cotización'}
                             </h3>
-                            <p className="text-slate-600 text-sm mb-6 px-4">
+                            <p className="text-slate-600 text-sm mb-6 px-4 text-justify">
                                 {service.category === 'empresa'
                                     ? `Ingresa tus datos corporativos y un asesor experto se contactará contigo para estructurar tu plan de ${service.title}.`
                                     : `Ingresa tus datos básicos y te presentaremos las mejores opciones en ${service.title}.`}

@@ -9,7 +9,7 @@ import { ArrowRight, CheckCircle2, HelpCircle } from "lucide-react";
 
 export default function ServicesPage() {
     return (
-        <div className="bg-white">
+        <div className="bg-transparent">
             {/* Hero */}
             <section className="relative overflow-hidden bg-slate-900 pt-36 pb-24 text-center lg:pt-48 lg:pb-32">
                 {/* Abstract background */}
@@ -48,7 +48,7 @@ export default function ServicesPage() {
             </div>
 
             {/* Detailed Features / Process Section */}
-            <section className="py-24 bg-white">
+            <section className="py-24 bg-transparent">
                 <Container>
                     <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
                         <motion.div

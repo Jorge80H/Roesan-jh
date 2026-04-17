@@ -43,13 +43,20 @@ const getCategoryGradient = (category: string) => {
 
 export default function BlogPage() {
     return (
-        <div className="bg-white">
+        <div className="bg-transparent">
             {/* Hero */}
-            <section className="bg-slate-900 pt-36 pb-24 text-center">
-                <div className="absolute inset-0 pointer-events-none overflow-hidden">
-                    <div className="absolute inset-0 bg-gradient-to-br from-purple-900/30 to-slate-900 opacity-60" />
+            <section className="relative overflow-hidden bg-slate-900 pt-36 pb-24 text-center">
+                {/* Background Image / Overlay */}
+                <div className="absolute inset-0 z-0">
+                    <img
+                        src="/images/edificio-moderno.png"
+                        alt="Blog Seguros"
+                        className="object-cover w-full h-full opacity-40 mix-blend-luminosity"
+                    />
+                    <div className="absolute inset-0 bg-purple-900/30 mix-blend-multiply" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-50 via-slate-900/60 to-transparent" />
                 </div>
-                <Container className="relative">
+                <Container className="relative z-10">
                     <span className="inline-block rounded-full bg-purple-700/30 px-4 py-1.5 text-sm font-medium text-purple-300 mb-6">
                         Blog & Educación
                     </span>
@@ -64,7 +71,7 @@ export default function BlogPage() {
             </section>
 
             {/* Articles Grid */}
-            <section className="py-20 bg-slate-50">
+            <section className="py-20 bg-transparent">
                 <Container>
                     <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
                         {blogPosts.map((post) => (

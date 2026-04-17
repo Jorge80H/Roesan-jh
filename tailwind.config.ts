@@ -37,7 +37,7 @@ export default {
             },
             fontFamily: {
                 sans: ["var(--font-roboto)", "sans-serif"],
-                serif: ["var(--font-philosopher)", "serif"],
+                serif: ["var(--font-roboto)", "sans-serif"],
             },
             animation: {
                 'float': 'float 6s ease-in-out infinite',

@@ -26,14 +26,16 @@ export default function EmpresasHubPage() {
         .filter(Boolean) as typeof servicesData;
 
     return (
-        <div className="bg-white">
+        <div className="bg-transparent">
             {/* Hero */}
-            <section className="relative overflow-hidden bg-slate-900 pt-36 pb-24 text-center lg:pt-48 lg:pb-32">
-                <div className="absolute inset-0 bg-slate-900">
-                    <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-indigo-500/20 opacity-20" />
+            <section className="relative overflow-hidden pt-36 pb-24 text-center lg:pt-48 lg:pb-32">
+                <div className="absolute inset-0 z-0">
+                    <Image src="/images/banner-empresas.png" alt="Seguros Empresas" fill className="object-cover" priority />
+                    <div className="absolute inset-0 bg-slate-900/70"></div>
+                    <div className="absolute inset-0 bg-gradient-to-r from-purple-900/50 to-indigo-900/50" />
                 </div>
 
-                <Container className="relative pt-8">
+                <Container className="relative z-10 pt-8">
                     <div className="mb-8">
                         <Breadcrumbs 
                             variant="dark"

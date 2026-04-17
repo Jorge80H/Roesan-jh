@@ -88,17 +88,27 @@ export default function ContactPage() {
     };
 
     return (
-        <div className="bg-slate-50 min-h-screen">
+        <div className="bg-transparent min-h-screen">
             {/* Header */}
-            <div className="bg-slate-900 pb-32 pt-36 text-center lg:pt-48">
-                <Container>
+            <div className="relative overflow-hidden bg-slate-900 pb-32 pt-36 text-center lg:pt-48">
+                {/* Background Image / Overlay */}
+                <div className="absolute inset-0 z-0">
+                    <img
+                        src="/images/sede_roesan_clean_v2.png"
+                        alt="Sede Roesan"
+                        className="object-cover w-full h-full opacity-40"
+                    />
+                    <div className="absolute inset-0 bg-slate-900/50 mix-blend-multiply" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-50 via-slate-900/40 to-transparent" />
+                </div>
+                <Container className="relative z-10">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         className="inline-flex items-center gap-2 text-cyan-400 text-sm font-medium mb-4"
                     >
                         <Shield className="w-4 h-4" />
-                        Asesoría 100% gratuita y sin compromiso
+                        Asesoría sin compromiso
                     </motion.div>
                     <motion.h1
                         initial={{ opacity: 0, y: 20 }}
@@ -198,7 +208,7 @@ export default function ContactPage() {
                         className="rounded-3xl bg-white p-8 shadow-xl ring-1 ring-slate-900/5 lg:p-10"
                     >
                         <div className="mb-6">
-                            <h2 className="text-2xl font-bold text-slate-900">Solicitar asesoría gratuita</h2>
+                            <h2 className="text-2xl font-bold text-slate-900">Solicitar asesoría</h2>
                             <p className="mt-1.5 text-slate-500 text-sm">
                                 Cuéntanos qué necesitas y un experto revisará tu caso personalmente.
                             </p>
@@ -355,7 +365,7 @@ export default function ContactPage() {
                                             </>
                                         ) : (
                                             <>
-                                                Solicitar Asesoría Gratuita
+                                                Solicitar Asesoría
                                                 <Send className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                                             </>
                                         )}

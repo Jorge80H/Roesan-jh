@@ -47,7 +47,7 @@ export function Footer() {
                                 <div className="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center group-hover:bg-purple-700 transition-colors">
                                     <Phone className="w-3.5 h-3.5" />
                                 </div>
-                                +57 3002114998
+                                +57 300 211 4998
                             </a>
                             <a href="mailto:comercial@roesan.com" className="flex items-center gap-3 text-sm hover:text-white transition-colors group">
                                 <div className="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center group-hover:bg-purple-700 transition-colors">
@@ -120,13 +120,13 @@ export function Footer() {
                             >
                                 <MessageCircle className="w-4 h-4" />
                             </a>
-                            <a href="https://facebook.com/roesan" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-blue-600 hover:text-white transition-all" aria-label="Facebook">
+                            <a href="https://www.facebook.com/Roesanltda/" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-blue-600 hover:text-white transition-all" aria-label="Facebook">
                                 <Facebook className="w-4 h-4" />
                             </a>
-                            <a href="https://instagram.com/roesan" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-pink-600 hover:text-white transition-all" aria-label="Instagram">
+                            <a href="https://www.instagram.com/roesanseguros?igsh=MWxoOThjZWJwazFiMg%3D%3D" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-pink-600 hover:text-white transition-all" aria-label="Instagram">
                                 <Instagram className="w-4 h-4" />
                             </a>
-                            <a href="https://linkedin.com/company/roesan" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-blue-700 hover:text-white transition-all" aria-label="LinkedIn">
+                            <a href="https://co.linkedin.com/company/roesan-agencia-de-seguros" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-blue-700 hover:text-white transition-all" aria-label="LinkedIn">
                                 <Linkedin className="w-4 h-4" />
                             </a>
                         </div>

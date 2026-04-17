@@ -15,14 +15,16 @@ export default function PersonasHubPage() {
     const personasServices = servicesData.filter(s => s.category === "persona");
 
     return (
-        <div className="bg-white">
+        <div className="bg-transparent">
             {/* Hero */}
-            <section className="relative overflow-hidden bg-slate-900 pt-36 pb-24 text-center lg:pt-48 lg:pb-32">
-                <div className="absolute inset-0 bg-slate-900">
-                    <div className="absolute inset-0 bg-gradient-to-r from-teal-500/20 to-blue-500/20 opacity-20" />
+            <section className="relative overflow-hidden pt-36 pb-24 text-center lg:pt-48 lg:pb-32">
+                <div className="absolute inset-0 z-0">
+                    <Image src="/images/banner-personas.png" alt="Seguros Personas" fill className="object-cover" priority />
+                    <div className="absolute inset-0 bg-slate-900/60"></div>
+                    <div className="absolute inset-0 bg-gradient-to-r from-teal-900/40 to-blue-900/40" />
                 </div>
 
-                <Container className="relative pt-8">
+                <Container className="relative z-10 pt-8">
                     <div className="mb-8">
                         <Breadcrumbs 
                             variant="dark"

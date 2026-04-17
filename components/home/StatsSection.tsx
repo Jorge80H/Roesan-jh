@@ -48,18 +48,8 @@ const stats = [
         description: "Fundada en 1982 por Roberto Estrada Ángel"
     },
     {
-        label: "Familias protegidas",
-        value: 2000,
-        suffix: "+",
-        icon: Users,
-        color: "text-cyan-600",
-        bg: "bg-cyan-50",
-        border: "border-cyan-100",
-        description: "Clientes que confían su patrimonio a Roesan"
-    },
-    {
         label: "Aseguradoras aliadas",
-        value: 8,
+        value: 13,
         suffix: "",
         icon: Shield,
         color: "text-emerald-600",
@@ -97,11 +87,11 @@ export function StatsSection() {
                         Números que respaldan nuestra confianza
                     </h2>
                     <p className="mt-4 text-lg text-slate-500 max-w-2xl mx-auto font-light">
-                        Décadas de experiencia, miles de familias protegidas y el respaldo de las mejores aseguradoras.
+                        Décadas de experiencia y el respaldo de las mejores aseguradoras.
                     </p>
                 </motion.div>
 
-                <div className="grid grid-cols-2 gap-6 lg:grid-cols-4">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     {stats.map((stat, idx) => (
                         <motion.div
                             key={stat.label}

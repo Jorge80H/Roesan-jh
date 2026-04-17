@@ -26,21 +26,6 @@ export const metadata: Metadata = {
     },
 };
 
-const testimonials = [
-    {
-        quote: "En menos de una hora tenía 3 opciones comparadas con precios reales. Excelente servicio.",
-        author: "Carlos M.",
-        location: "Bogotá",
-        stars: 5,
-    },
-    {
-        quote: "Asesoría imparcial y rápida. Nos ahorraron más del 20% frente a lo que traíamos cotizado.",
-        author: "Patricia G.",
-        location: "Medellín",
-        stars: 5,
-    },
-];
-
 export default function CotizadorGlobalPage() {
     return (
         <div className="bg-slate-50 min-h-screen pb-24">
@@ -67,7 +52,7 @@ export default function CotizadorGlobalPage() {
                                         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
                                         <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-400"></span>
                                     </span>
-                                    Cotización 100% Gratuita
+                                    Cotización Rápida
                                 </span>
                             </div>
 
@@ -125,7 +110,7 @@ export default function CotizadorGlobalPage() {
                     <div className="max-w-4xl mx-auto">
                         <div className="text-center mb-12">
                             <h2 className="text-3xl font-bold text-slate-900 mb-3">
-                                Así funciona tu asesoría gratuita
+                                Así funciona tu asesoría
                             </h2>
                             <p className="text-slate-500 max-w-2xl mx-auto">
                                 No somos una aseguradora. Somos tu aliado independiente que negocia por ti con las mejores compañías del mercado.
@@ -168,30 +153,7 @@ export default function CotizadorGlobalPage() {
                             </div>
                         </div>
 
-                        {/* Testimonials */}
-                        <div className="grid md:grid-cols-2 gap-6">
-                            {testimonials.map((t, i) => (
-                                <div key={i} className="bg-slate-50 rounded-2xl p-6 border border-slate-100">
-                                    <div className="flex gap-0.5 mb-3">
-                                        {Array.from({ length: t.stars }).map((_, s) => (
-                                            <Star key={s} className="w-4 h-4 text-amber-400 fill-amber-400" />
-                                        ))}
-                                    </div>
-                                    <p className="text-slate-700 text-sm leading-relaxed italic mb-4">
-                                        &ldquo;{t.quote}&rdquo;
-                                    </p>
-                                    <div className="flex items-center gap-2">
-                                        <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center text-primary font-bold text-sm">
-                                            {t.author[0]}
-                                        </div>
-                                        <div>
-                                            <p className="text-sm font-semibold text-slate-900">{t.author}</p>
-                                            <p className="text-xs text-slate-500">{t.location}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
+
 
                         {/* Urgency footer bar */}
                         <div className="mt-10 flex flex-col sm:flex-row items-center justify-between gap-4 bg-primary/5 border border-primary/20 rounded-2xl px-6 py-4 text-center sm:text-left">

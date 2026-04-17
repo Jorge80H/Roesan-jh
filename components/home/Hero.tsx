@@ -18,7 +18,7 @@ const slides = [
         funnelPreset: "vida" as const,
     },
     {
-        image: "/images/hero-empresa.png",
+        image: "/images/banner-empresas.png",
         tag: "Seguros Empresariales",
         title: "Asesoría que protege tu empresa",
         subtitle: "Soluciones integrales para proteger tu operación, empleados y patrimonio con el respaldo de las mejores aseguradoras.",
@@ -76,16 +76,16 @@ export function Hero() {
                         sizes="100vw"
                     />
                     {/* Horizontal overlay: dark on left, clear on right */}
-                    <div className={`absolute inset-0 bg-gradient-to-r ${slide.overlayColor}`} />
+                    <div className={`absolute inset-0 bg-gradient-to-r ${slide.overlayColor} opacity-20`} />
                     {/* Vertical overlay bottom only */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-900/30 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/30 to-transparent" />
                     {/* Additional general dark overlay to guarantee text legibility */}
-                    <div className="absolute inset-0 bg-slate-950/40" />
+                    <div className="absolute inset-0 bg-black/5" />
                 </motion.div>
             </AnimatePresence>
 
             {/* Content */}
-            <Container className="relative z-10 flex flex-col justify-center min-h-[550px] py-16 lg:py-20">
+            <Container className="relative z-10 flex flex-col justify-center min-h-[400px] md:min-h-[450px] py-10 lg:py-12">
 
                 {/* Top: Animated text — centered */}
                 <div className="flex-1 flex flex-col justify-center items-center text-center">
@@ -113,15 +113,9 @@ export function Hero() {
                             </h1>
 
                             {/* Subtitle */}
-                            <p className="text-xl lg:text-2xl text-white/95 leading-relaxed mx-auto max-w-2xl drop-shadow-md shadow-black/50">
+                            <p className="text-xl lg:text-2xl text-white/95 leading-relaxed mx-auto max-w-2xl drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
                                 {slide.subtitle}
                             </p>
-
-                            {/* Trust indicator */}
-                            <div className="flex items-center justify-center gap-3 text-sm text-white/60 pt-1">
-                                <Shield className="w-4 h-4 text-cyan-400" />
-                                Más de 2,000 familias y empresas protegidas desde 1982
-                            </div>
                         </motion.div>
                     </AnimatePresence>
 

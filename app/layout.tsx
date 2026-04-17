@@ -13,12 +13,6 @@ const roboto = Roboto({
   variable: "--font-roboto",
 });
 
-const philosopher = Philosopher({
-  subsets: ["latin"],
-  weight: ["400", "700"],
-  variable: "--font-philosopher",
-});
-
 export const metadata: Metadata = {
   title: {
     default: "Roesan Seguros | Protección que se adapta a tu vida",
@@ -77,8 +71,26 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body
-        className={`${roboto.variable} ${philosopher.variable} antialiased flex min-h-screen flex-col font-sans text-slate-600 bg-transparent selection:bg-accent selection:text-accent-foreground`}
+        className={`${roboto.variable} antialiased flex min-h-screen flex-col font-sans text-slate-600 bg-background selection:bg-accent selection:text-accent-foreground`}
       >
+        {/* Atmosphere Layer - Fixed and subtle */}
+        <div className="fixed inset-0 z-[-1] overflow-hidden pointer-events-none">
+            {/* Main Gradient Base */}
+            <div className="absolute inset-0 bg-gradient-to-br from-[#fdfbff] via-[#fffaff] to-[#f9f5ff]" />
+            
+            {/* Soft Purple Glows (Blobs) */}
+            <div className="absolute -top-[10%] -left-[10%] w-[40%] h-[40%] bg-purple-200/20 blur-[120px] rounded-full" />
+            <div className="absolute top-[20%] -right-[5%] w-[30%] h-[40%] bg-cyan-100/10 blur-[100px] rounded-full" />
+            <div className="absolute bottom-[10%] left-[20%] w-[35%] h-[35%] bg-purple-100/30 blur-[110px] rounded-full" />
+            
+            {/* The Wave (Ola) */}
+            <div className="absolute bottom-0 left-0 w-full opacity-40">
+                <svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto translate-y-4">
+                    <path fill="#e9e0f8" d="M0,160L48,176C96,192,192,224,288,213.3C384,203,480,149,576,144C672,139,768,181,864,181.3C960,181,1056,139,1152,122.7C1248,107,1344,117,1392,122.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+                </svg>
+            </div>
+        </div>
+
         <UnicornBackground />
         <Navbar />
         <main className="relative z-10 flex-1">{children}</main>

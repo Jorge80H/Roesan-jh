@@ -22,7 +22,7 @@ const partners = [
 
 export function TrustBar() {
     return (
-        <section className="border-y border-slate-200/50 bg-white/50 backdrop-blur-sm py-14 overflow-hidden">
+        <section className="border-y border-slate-200/50 bg-white/50 backdrop-blur-sm py-8 overflow-hidden">
             <Container>
                 <motion.p
                     initial={{ opacity: 0, y: 10 }}
@@ -35,16 +35,16 @@ export function TrustBar() {
                 
                 {/* Looping Carousel via CSS animation for better UX with many logos */}
                 <div className="relative flex overflow-hidden w-full group mask-image-fade">
-                    <div className="flex w-max animate-marquee space-x-8 md:space-x-12 items-center hover:[animation-play-state:paused] py-4">
+                    <div className="flex w-max animate-marquee space-x-6 md:space-x-8 items-center hover:[animation-play-state:paused] py-4">
                         {[...partners, ...partners].map((partner, idx) => (
                             <div
                                 key={`${partner.name}-${idx}`}
-                                className="relative flex items-center justify-center w-32 h-16 md:w-40 md:h-20 transition-all duration-300 group/logo"
+                                className="relative flex items-center justify-center w-36 h-20 md:w-48 md:h-24 transition-all duration-300 group/logo bg-white/50 mix-blend-normal rounded-lg p-2"
                             >
                                 <img
                                     src={`/images/${partner.file}`}
                                     alt={`Logo de ${partner.name}`}
-                                    className="max-w-full max-h-full object-contain filter grayscale opacity-60 mix-blend-multiply transition-all duration-500 ease-out group-hover/logo:grayscale-0 group-hover/logo:opacity-100 group-hover/logo:scale-110"
+                                    className="max-w-full max-h-full object-contain transition-transform duration-500 ease-out hover:scale-110"
                                 />
                             </div>
                         ))}

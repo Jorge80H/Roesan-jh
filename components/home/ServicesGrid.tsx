@@ -12,8 +12,8 @@ import { servicesData } from "@/lib/services-data";
 const cardImages: Record<string, string> = {
     // Empresas
     copropiedades: "/images/card-copropiedades.png",
-    transporte: "/images/Seguro_transporte.jpeg",
-    cumplimiento: "/images/card-cumplimiento-contrato-co.png",
+    transporte: "/images/card-transporte-cartagena.png",
+    cumplimiento: "/images/card-cumplimiento-business.png",
     "responsabilidad-civil-empresarial": "/images/card-rc-bogota.png",
     "todo-riesgo": "/images/card-todo-riesgo-maquinaria.png",
     empresariales: "/images/card-todo-riesgo-globo.png",
@@ -50,7 +50,7 @@ const cardAccents: Record<string, string> = {
 };
 
 function ServiceCard({ service, idx, isLarge = false }: { service: typeof servicesData[0]; idx: number; isLarge?: boolean }) {
-    const image = cardImages[service.slug] || "/images/card-empresarial.png";
+    const image = cardImages[service.slug] || "/images/office-building.png";
     const accent = cardAccents[service.slug] || "bg-purple-600";
 
     return (
@@ -60,7 +60,7 @@ function ServiceCard({ service, idx, isLarge = false }: { service: typeof servic
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.08 }}
-                className={`relative overflow-hidden rounded-3xl shadow-md hover:shadow-2xl transition-all duration-500 h-full ${isLarge ? "min-h-[400px]" : "min-h-[320px]"}`}
+                className={`relative overflow-hidden rounded-3xl shadow-md hover:shadow-2xl transition-all duration-500 h-full ${isLarge ? "min-h-[280px] md:min-h-[320px]" : "min-h-[200px] md:min-h-[240px]"}`}
             >
                 {/* Image */}
                 <div className="absolute inset-0">
@@ -78,12 +78,12 @@ function ServiceCard({ service, idx, isLarge = false }: { service: typeof servic
                 {/* Content at bottom */}
                 <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8 z-10">
                     {/* Accent bar */}
-                    <div className={`w-10 h-1 ${accent} rounded-full mb-4 group-hover:w-16 transition-all duration-500`} />
+                    <div className={`w-10 h-1 ${accent} rounded-full mb-2 group-hover:w-16 transition-all duration-500`} />
 
-                    <h4 className={`font-serif font-medium text-white mb-3 ${isLarge ? "text-3xl sm:text-4xl" : "text-2xl"}`}>
+                    <h4 className={`font-serif font-medium text-white mb-2 ${isLarge ? "text-2xl sm:text-3xl" : "text-xl"}`}>
                         {service.title}
                     </h4>
-                    <p className={`text-white/80 leading-relaxed mb-5 line-clamp-3 ${isLarge ? "text-lg max-w-lg" : "text-base"}`}>
+                    <p className={`text-white/80 leading-relaxed mb-4 line-clamp-2 ${isLarge ? "text-base max-w-lg" : "text-sm"}`}>
                         {service.shortDescription}
                     </p>
 

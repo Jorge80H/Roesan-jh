@@ -2,7 +2,6 @@ import { Hero } from "@/components/home/Hero";
 import { TrustBar } from "@/components/home/TrustBar";
 import { StatsSection } from "@/components/home/StatsSection";
 import { ServicesGrid } from "@/components/home/ServicesGrid";
-import { Testimonials } from "@/components/home/Testimonials";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import Link from "next/link";
@@ -15,7 +14,6 @@ export default function Home() {
       <TrustBar />
       <ServicesGrid />
       <StatsSection />
-      <Testimonials />
 
       {/* Final CTA Section */}
       <section className="relative py-24 overflow-hidden">
@@ -39,7 +37,7 @@ export default function Home() {
                   size="lg"
                   className="bg-white text-purple-900 hover:bg-cyan-50 font-bold px-8 py-4 rounded-full text-base shadow-xl hover:shadow-2xl hover:scale-105 transition-all flex items-center gap-2"
                 >
-                  Solicitar asesoría gratuita
+                  Solicitar asesoría
                   <ArrowRight className="w-5 h-5" />
                 </Button>
               </Link>
