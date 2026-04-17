@@ -77,8 +77,8 @@ export default async function QuoteLandingPage({ params }: Props) {
                     ) : (
                         <div className={`h-full w-full bg-gradient-to-br ${bgGradient}`} />
                     )}
-                    <div className="absolute inset-0 bg-slate-900/70 mix-blend-multiply" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/60 to-transparent" />
+                    <div className="absolute inset-0 bg-slate-900/40 mix-blend-multiply" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-slate-900/35 to-transparent" />
                 </div>
 
                 <Container className="relative z-10">

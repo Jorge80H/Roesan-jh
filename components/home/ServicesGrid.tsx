@@ -72,7 +72,7 @@ function ServiceCard({ service, idx, isLarge = false }: { service: typeof servic
                         sizes={isLarge ? "(max-width: 768px) 100vw, 50vw" : "(max-width: 768px) 100vw, 25vw"}
                     />
                     {/* Dark gradient overlay - made darker for larger text */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/70 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/65 via-slate-900/45 to-transparent" />
                 </div>
 
                 {/* Content at bottom */}

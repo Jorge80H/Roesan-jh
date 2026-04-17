@@ -14,7 +14,7 @@ const slides = [
         tag: "Seguros para Personas",
         title: "Protegemos lo que más valoras",
         subtitle: "Tu familia merece tranquilidad ante cualquier imprevisto. Más de 40 años cuidando hogares colombianos.",
-        overlayColor: "from-purple-950/80 via-purple-900/60 to-transparent",
+        overlayColor: "from-purple-950/45 via-purple-900/30 to-transparent",
         funnelPreset: "vida" as const,
     },
     {
@@ -22,7 +22,7 @@ const slides = [
         tag: "Seguros Empresariales",
         title: "Asesoría que protege tu empresa",
         subtitle: "Soluciones integrales para proteger tu operación, empleados y patrimonio con el respaldo de las mejores aseguradoras.",
-        overlayColor: "from-slate-950/80 via-slate-900/60 to-transparent",
+        overlayColor: "from-slate-950/45 via-slate-900/30 to-transparent",
         funnelPreset: "empresarial" as const,
     },
     {
@@ -30,7 +30,7 @@ const slides = [
         tag: "Seguro de Vehículos",
         title: "Viaja con total confianza",
         subtitle: "Cotiza tu seguro de auto en minutos. Comparamos entre las mejores aseguradoras para darte la tarifa ideal.",
-        overlayColor: "from-cyan-950/70 via-slate-900/50 to-transparent",
+        overlayColor: "from-cyan-950/40 via-slate-900/25 to-transparent",
         funnelPreset: "auto" as const,
     },
 ];
@@ -76,9 +76,9 @@ export function Hero() {
                         sizes="100vw"
                     />
                     {/* Horizontal overlay: dark on left, clear on right */}
-                    <div className={`absolute inset-0 bg-gradient-to-r ${slide.overlayColor} opacity-20`} />
+                    <div className={`absolute inset-0 bg-gradient-to-r ${slide.overlayColor} opacity-15`} />
                     {/* Vertical overlay bottom only */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/30 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/15 to-transparent" />
                     {/* Additional general dark overlay to guarantee text legibility */}
                     <div className="absolute inset-0 bg-black/5" />
                 </motion.div>

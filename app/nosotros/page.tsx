@@ -75,8 +75,8 @@ export default function AboutPage() {
                         className="object-cover opacity-80"
                         priority
                     />
-                    <div className="absolute inset-0 bg-slate-900/30 mix-blend-multiply" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-slate-900/20 to-transparent" />
+                    <div className="absolute inset-0 bg-slate-900/45" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/50 via-slate-900/20 to-transparent" />
                 </div>
 
                 <Container className="relative text-center">

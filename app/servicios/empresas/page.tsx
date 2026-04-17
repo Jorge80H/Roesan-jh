@@ -96,12 +96,12 @@ export default function EmpresasHubPage() {
                                             className="object-cover transition-transform duration-700 group-hover:scale-110"
                                             sizes="(max-width: 768px) 100vw, 33vw"
                                         />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/70 to-slate-950/15" />
-                                        <div className="absolute inset-0 bg-gradient-to-br from-primary/35 via-transparent to-transparent" />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-slate-950/40 to-slate-950/10" />
+                                        <div className="absolute inset-0 bg-gradient-to-br from-primary/25 via-transparent to-transparent" />
                                     </div>
 
                                     <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-6 z-10 flex flex-col justify-end h-full">
-                                        <div className="absolute inset-x-4 bottom-4 top-1/3 rounded-2xl bg-gradient-to-t from-slate-950/90 via-slate-950/72 to-primary/12 backdrop-blur-[1px]" />
+                                        <div className="absolute inset-x-4 bottom-4 top-1/3 rounded-2xl bg-gradient-to-t from-slate-950/60 via-slate-950/45 to-primary/5 backdrop-blur-[1px]" />
                                         <div className="relative">
                                         <div className="w-8 h-1 bg-purple-500 rounded-full mb-3 group-hover:w-12 transition-all duration-500" />
                                         <h4 className="font-serif text-xl font-medium text-slate-50 mb-2 [text-shadow:0_2px_10px_rgba(15,23,42,0.7)]">
@@ -124,7 +124,7 @@ export default function EmpresasHubPage() {
             </section>
 
             <section id="cotiza-tu-seguro" className="bg-slate-950 py-20 scroll-mt-28">
-                <Container className="max-w-5xl">
+                <Container className="max-w-3xl">
                     <QuoteFunnel />
                 </Container>
             </section>

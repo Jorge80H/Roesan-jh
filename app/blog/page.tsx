@@ -53,8 +53,8 @@ export default function BlogPage() {
                         alt="Blog Seguros"
                         className="object-cover w-full h-full opacity-40 mix-blend-luminosity"
                     />
-                    <div className="absolute inset-0 bg-purple-900/30 mix-blend-multiply" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-50 via-slate-900/60 to-transparent" />
+                    <div className="absolute inset-0 bg-purple-900/15 mix-blend-multiply" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-50 via-slate-900/35 to-transparent" />
                 </div>
                 <Container className="relative z-10">
                     <span className="inline-block rounded-full bg-purple-700/30 px-4 py-1.5 text-sm font-medium text-purple-300 mb-6">

@@ -63,9 +63,8 @@ export default async function CarInsuranceLandingPage({ params }: Props) {
             <section className="relative overflow-hidden pt-36 pb-24 lg:pt-48 lg:pb-32">
                 <div className="absolute inset-0">
                     <div className={`h-full w-full bg-gradient-to-br ${bgGradient}`} />
-                    <div className="absolute inset-0 bg-slate-900/40 mix-blend-multiply" />
-                    <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&q=80')] bg-cover bg-center opacity-30 mix-blend-overlay" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/60 to-transparent" />
+                    <div className="absolute inset-0 bg-slate-900/15 mix-blend-multiply" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 via-slate-900/20 to-transparent" />
                 </div>
 
                 <Container className="relative z-10">
