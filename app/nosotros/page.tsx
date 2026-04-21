@@ -30,6 +30,7 @@ export default function AboutPage() {
         { name: "Adriana Garzón", role: "Ejecutiva de Autos", image: "/images/equipo/Adriana_Avatar_v2.png" },
         { name: "Jose Rodríguez", role: "Ejecutivo Líneas Personales", image: "/images/equipo/Jose_Avatar_v2.png" },
         { name: "Alejandro Sarmiento", role: "Auxiliar Operativo", image: "/images/equipo/AlejandroAvatar_v2.png" },
+        { name: "Luz Mary Velasco", role: "Auxiliar Administrativo", image: "/images/equipo/Mary_Avatar_v2.png" },
     ];
 
     const values = [
