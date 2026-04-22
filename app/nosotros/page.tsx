@@ -22,14 +22,14 @@ export default function AboutPage() {
     };
 
     const team = [
-        { name: "Carmen Eugenia Estrada Grueso", role: "Gerente General" },
-        { name: "Jonathan Jordan", role: "Gerente Financiero" },
+        { name: "Carmen Eugenia Estrada Grueso", role: "Gerente General", image: "/images/equipo/CarmenE_Avatar_v2.png" },
+        { name: "Jonathan Jordan", role: "Gerente Financiero", image: "/images/equipo/Jonathan_Avatar_v2.png" },
         { name: "Ana Lucia Grueso H", role: "Gerente Comercial" },
-        { name: "Patricia Ortegón", role: "Directora Administrativa", image: "/images/equipo/Patricia.jpeg" },
-        { name: "Federico López", role: "Director Comercial", image: "/images/equipo/Federico.jpeg", position: "object-[center_20%]" },
-        { name: "Adriana Garzón", role: "Ejecutiva de Autos", image: "/images/equipo/Adriana.png" },
-        { name: "Jose Rodríguez", role: "Ejecutivo Líneas Personales", image: "/images/equipo/Jose.jpeg" },
-        { name: "Alejandro Sarmiento", role: "Auxiliar Operativo", image: "/images/equipo/Alejandro.jpeg" },
+        { name: "Patricia Ortegón", role: "Directora Administrativa", image: "/images/equipo/Patricia_Avatar2_v2.png" },
+        { name: "Federico López", role: "Director Comercial", image: "/images/equipo/Federico_Avatar2_v2.png", position: "object-[center_20%]" },
+        { name: "Adriana Garzón", role: "Ejecutiva de Autos", image: "/images/equipo/Adriana_Avatar_v2.png" },
+        { name: "Jose Rodríguez", role: "Ejecutivo Líneas Personales", image: "/images/equipo/Jose_Avatar_v2.png" },
+        { name: "Alejandro Sarmiento", role: "Auxiliar Operativo", image: "/images/equipo/AlejandroAvatar_v2.png" },
     ];
 
     const values = [
@@ -187,7 +187,7 @@ export default function AboutPage() {
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.8 }}
-                            className="hidden lg:flex flex-col rounded-3xl bg-[#1e103c] p-6"
+                            className="flex flex-col rounded-3xl bg-[#1e103c] p-6"
                         >
                             <div className="mb-4">
                                 <span className="text-xs font-bold uppercase tracking-widest text-cyan-400">Nuestro Equipo</span>

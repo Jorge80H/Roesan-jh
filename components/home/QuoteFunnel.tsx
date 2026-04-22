@@ -321,11 +321,20 @@ export default function QuoteFunnel({ initialType, initialProductId, variant = "
       );
 
       await enviarLeadAlCRM({
-        nombre: leadName,
+        nombre: form.customerType === "persona" ? form.firstName.trim() : form.responsibleName.trim(),
+        lastName: form.customerType === "persona" ? form.lastName.trim() : "",
         telefono: leadPhone,
         email: leadEmail,
+        type: leadType,
+        customerType: form.customerType,
+        vehiclePlate: form.vehiclePlate.trim().toUpperCase(),
+        companyName: form.customerType === "empresa" ? form.companyName.trim() : "",
+        companyNit: form.customerType === "empresa"
+          ? `${form.companyNit.trim()}${form.companyVerificationDigit ? `-${form.companyVerificationDigit.trim()}` : ""}`
+          : "",
+        responsibleName: form.customerType === "empresa" ? form.responsibleName.trim() : "",
+        driverBirthDate: form.birthDate,
         notas: [
-          `Tipo de cliente: ${customerTypeLabel}`,
           `Intereses: ${selectedProductLabels}`,
           form.customerType === "empresa" ? `Empresa: ${form.companyName.trim()}` : "",
           form.customerType === "empresa"
