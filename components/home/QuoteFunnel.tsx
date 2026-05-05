@@ -63,6 +63,7 @@ interface FormState {
   hasPledge: boolean;
   pledgeDetails: string;
   drivingZone: string;
+  customZone: string;
   companyName: string;
   companyNit: string;
   companyVerificationDigit: string;
@@ -179,6 +180,7 @@ export default function QuoteFunnel({ initialType, initialProductId, variant = "
     hasPledge: false,
     pledgeDetails: "",
     drivingZone: "",
+    customZone: "",
     companyName: "",
     companyNit: "",
     companyVerificationDigit: "",
@@ -232,25 +234,21 @@ export default function QuoteFunnel({ initialType, initialProductId, variant = "
     if (step === 3) {
       if (form.customerType === "persona") {
         if (!form.firstName.trim()) nextErrors.firstName = "El nombre es obligatorio.";
-        if (!form.lastName.trim()) nextErrors.lastName = "El apellido es obligatorio.";
         if (form.phone.replace(/\D/g, "").length !== 10) nextErrors.phone = "Ingresa un celular válido de 10 dígitos.";
         if (!form.email.trim()) nextErrors.email = "El correo es obligatorio.";
         
         if (form.selectedProducts.includes("todo-riesgo-autos")) {
-          if (!form.driverId.trim()) nextErrors.driverId = "La cédula es obligatoria.";
-          else if (!/^\d{6,11}$/.test(form.driverId.trim())) nextErrors.driverId = "Ingresa una cédula válida.";
+          if (form.driverId.trim() && !/^\d{6,11}$/.test(form.driverId.trim())) {
+            nextErrors.driverId = "Ingresa una cédula válida.";
+          }
           
-          if (!form.vehiclePlate.trim()) nextErrors.vehiclePlate = "La placa es obligatoria.";
-          else if (!/^[A-Za-z]{3}\d{2,3}[A-Za-z]?$/.test(form.vehiclePlate.trim())) nextErrors.vehiclePlate = "Ingresa una placa válida (ej. AAA123 o AAA12A).";
-          
-          if (!form.birthDate.trim()) nextErrors.birthDate = "La fecha de nacimiento es obligatoria.";
-          if (!form.drivingZone.trim()) nextErrors.drivingZone = "La zona de circulación es obligatoria.";
+          if (form.vehiclePlate.trim() && !/^[A-Za-z]{3}\d{2,3}[A-Za-z]?$/.test(form.vehiclePlate.trim())) {
+            nextErrors.vehiclePlate = "Ingresa una placa válida (ej. AAA123 o AAA12A).";
+          }
         }
       }
 
       if (form.customerType === "empresa") {
-        if (!form.companyName.trim()) nextErrors.companyName = "El nombre de la empresa es obligatorio.";
-        if (!form.companyNit.trim()) nextErrors.companyNit = "El NIT es obligatorio.";
         if (!form.companyEmail.trim()) nextErrors.companyEmail = "El correo es obligatorio.";
         if (!form.responsibleName.trim()) nextErrors.responsibleName = "El nombre del responsable es obligatorio.";
         if (form.responsiblePhone.replace(/\D/g, "").length !== 10) {
@@ -309,7 +307,7 @@ export default function QuoteFunnel({ initialType, initialProductId, variant = "
           vehiclePlate: form.vehiclePlate.trim().toUpperCase(),
           hasPledge: form.hasPledge,
           pledgeDetails: form.hasPledge ? form.pledgeDetails.trim() : "",
-          drivingZone: form.drivingZone.trim(),
+          drivingZone: form.drivingZone === "Otra" ? form.customZone.trim() || "Otra" : form.drivingZone.trim(),
           companyName: form.customerType === "empresa" ? form.companyName.trim() : "",
           companyNit: form.customerType === "empresa"
             ? `${form.companyNit.trim()}${form.companyVerificationDigit ? `-${form.companyVerificationDigit.trim()}` : ""}`
@@ -343,7 +341,7 @@ export default function QuoteFunnel({ initialType, initialProductId, variant = "
           form.driverId.trim() ? `Cédula: ${form.driverId.trim()}` : "",
           form.birthDate ? `Fecha de nacimiento: ${form.birthDate}` : "",
           form.vehiclePlate.trim() ? `Placa: ${form.vehiclePlate.trim().toUpperCase()}` : "",
-          form.drivingZone.trim() ? `Zona de circulación: ${form.drivingZone.trim()}` : "",
+          (form.drivingZone === "Otra" ? form.customZone.trim() || "Otra" : form.drivingZone.trim()) ? `Zona de circulación: ${form.drivingZone === "Otra" ? form.customZone.trim() || "Otra" : form.drivingZone.trim()}` : "",
           form.selectedProducts.includes("todo-riesgo-autos") ? `¿Tiene prenda?: ${form.hasPledge ? "Sí" : "No"}` : "",
           form.hasPledge && form.pledgeDetails.trim() ? `Detalles prenda: ${form.pledgeDetails.trim()}` : "",
           cleanMessage ? `Mensaje: ${cleanMessage}` : "",
@@ -374,7 +372,7 @@ export default function QuoteFunnel({ initialType, initialProductId, variant = "
           vehiclePlate: form.vehiclePlate.trim().toUpperCase(),
           hasPledge: form.hasPledge,
           pledgeDetails: form.hasPledge ? form.pledgeDetails.trim() : "",
-          drivingZone: form.drivingZone.trim(),
+          drivingZone: form.drivingZone === "Otra" ? form.customZone.trim() || "Otra" : form.drivingZone.trim(),
           message: cleanMessage,
         }),
       }).catch(console.error);
@@ -432,6 +430,7 @@ export default function QuoteFunnel({ initialType, initialProductId, variant = "
                   hasPledge: false,
                   pledgeDetails: "",
                   drivingZone: "",
+                  customZone: "",
                 });
               }}
               className="inline-flex min-h-9 items-center justify-center rounded-xl border border-white/20 px-4 text-[0.86rem] font-semibold text-white transition-colors hover:bg-white/10"
@@ -594,7 +593,7 @@ export default function QuoteFunnel({ initialType, initialProductId, variant = "
                   {errors.firstName ? <p className="text-[9.2px] text-rose-400">{errors.firstName}</p> : null}
                 </div>
                 <div className="space-y-0.5">
-                  <label className="text-[10.5px] font-bold text-slate-400 uppercase px-1">Apellido *</label>
+                  <label className="text-[10.5px] font-bold text-slate-400 uppercase px-1">Apellido</label>
                   <input
                     value={form.lastName}
                     onChange={(event) => setField("lastName", event.target.value)}
@@ -629,7 +628,7 @@ export default function QuoteFunnel({ initialType, initialProductId, variant = "
               {form.selectedProducts.includes("todo-riesgo-autos") && (
                 <>
                   <div className="space-y-0.5">
-                    <label className="text-[10.5px] font-bold text-slate-400 uppercase px-1">Número de cédula *</label>
+                    <label className="text-[10.5px] font-bold text-slate-400 uppercase px-1">Número de cédula <span className="normal-case font-normal text-slate-500">(Opcional)</span></label>
                     <input
                       value={form.driverId}
                       onChange={(event) => setField("driverId", event.target.value.replace(/\D/g, ""))}
@@ -639,7 +638,7 @@ export default function QuoteFunnel({ initialType, initialProductId, variant = "
                     {errors.driverId ? <p className="text-[9.2px] text-rose-400">{errors.driverId}</p> : null}
                   </div>
                   <div className="space-y-0.5">
-                    <label className="text-[10.5px] font-bold text-slate-400 uppercase px-1">Placa *</label>
+                    <label className="text-[10.5px] font-bold text-slate-400 uppercase px-1">Placa <span className="normal-case font-normal text-slate-500">(Opcional)</span></label>
                     <input
                       value={form.vehiclePlate}
                       onChange={(event) => setField("vehiclePlate", event.target.value.toUpperCase().slice(0, 6))}
@@ -649,7 +648,7 @@ export default function QuoteFunnel({ initialType, initialProductId, variant = "
                     {errors.vehiclePlate ? <p className="text-[9.2px] text-rose-400">{errors.vehiclePlate}</p> : null}
                   </div>
                   <div className="space-y-0.5">
-                    <label className="text-[10.5px] font-bold text-slate-400 uppercase px-1">Fecha de nacimiento *</label>
+                    <label className="text-[10.5px] font-bold text-slate-400 uppercase px-1">Fecha de nacimiento <span className="normal-case font-normal text-slate-500">(Opcional)</span></label>
                     <input
                       type="date"
                       value={form.birthDate}
@@ -659,10 +658,13 @@ export default function QuoteFunnel({ initialType, initialProductId, variant = "
                     {errors.birthDate ? <p className="text-[9.2px] text-rose-400">{errors.birthDate}</p> : null}
                   </div>
                   <div className="space-y-0.5">
-                    <label className="text-[10.5px] font-bold text-slate-400 uppercase px-1">Zona de circulación *</label>
+                    <label className="text-[10.5px] font-bold text-slate-400 uppercase px-1">Zona de circulación <span className="normal-case font-normal text-slate-500">(Opcional)</span></label>
                     <select
                       value={form.drivingZone}
-                      onChange={(event) => setField("drivingZone", event.target.value)}
+                      onChange={(event) => {
+                        setField("drivingZone", event.target.value);
+                        if (event.target.value !== "Otra") setField("customZone", "");
+                      }}
                       className="h-9 w-full rounded-lg border border-white/20 bg-white/5 px-3 text-[0.86rem] text-white outline-none transition-colors focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400/10"
                     >
                       <option value="" className="bg-[#1e103c] text-white">Selecciona una zona</option>
@@ -677,8 +679,19 @@ export default function QuoteFunnel({ initialType, initialProductId, variant = "
                     </select>
                     {errors.drivingZone ? <p className="text-[9.2px] text-rose-400">{errors.drivingZone}</p> : null}
                   </div>
+                  {form.drivingZone === "Otra" && (
+                    <div className="space-y-0.5">
+                      <label className="text-[10.5px] font-bold text-slate-400 uppercase px-1">¿Cuál es tu zona?</label>
+                      <input
+                        value={form.customZone}
+                        onChange={(event) => setField("customZone", event.target.value)}
+                        placeholder="Ej: Pasto, Nariño"
+                        className="h-9 w-full rounded-lg border border-white/20 bg-white/5 px-3 text-[0.86rem] text-white outline-none transition-colors placeholder:text-slate-500 focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400/10"
+                      />
+                    </div>
+                  )}
                   <div className="space-y-0.5">
-                    <label className="text-[10.5px] font-bold text-slate-400 uppercase px-1">¿Tiene prenda en el vehículo?</label>
+                    <label className="text-[10.5px] font-bold text-slate-400 uppercase px-1">¿Tiene prenda en el vehículo? <span className="normal-case font-normal text-slate-500">(Opcional)</span></label>
                     <div className="flex items-center gap-4 h-9 px-2">
                       <label className="flex items-center gap-2 cursor-pointer">
                         <input
@@ -735,7 +748,7 @@ export default function QuoteFunnel({ initialType, initialProductId, variant = "
             <div className={compact ? "space-y-1.5" : "space-y-4"}>
               <div className="grid gap-1.5 sm:grid-cols-2">
                 <div className="space-y-0.5 sm:col-span-2">
-                  <label className="text-[10.5px] font-bold text-slate-400 uppercase px-1">Empresa *</label>
+                  <label className="text-[10.5px] font-bold text-slate-400 uppercase px-1">Empresa</label>
                   <input
                     value={form.companyName}
                     onChange={(event) => setField("companyName", event.target.value)}
@@ -745,7 +758,7 @@ export default function QuoteFunnel({ initialType, initialProductId, variant = "
                   {errors.companyName ? <p className="text-[9.2px] text-rose-400">{errors.companyName}</p> : null}
                 </div>
                 <div className="space-y-0.5">
-                  <label className="text-[10.5px] font-bold text-slate-400 uppercase px-1">NIT *</label>
+                  <label className="text-[10.5px] font-bold text-slate-400 uppercase px-1">NIT</label>
                   <input
                     value={form.companyNit}
                     onChange={(event) => setField("companyNit", formatNit(event.target.value))}
