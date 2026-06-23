@@ -4,7 +4,7 @@ import React from "react";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Download } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { servicesData } from "@/lib/services-data";
@@ -53,7 +53,7 @@ export default function PersonasHubPage() {
                         initial={{ opacity: 0, y: 12 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.3 }}
-                        className="mt-8"
+                        className="mt-8 flex flex-col items-center gap-3"
                     >
                         <Link href="#cotiza-tu-seguro" className="inline-flex">
                             <Button
@@ -64,6 +64,14 @@ export default function PersonasHubPage() {
                                 Cotiza tu seguro
                             </Button>
                         </Link>
+                        <a
+                            href="/assets/brochures/Brochure-seguros-personas-2026.pdf"
+                            download="Brochure-seguros-personas-2026.pdf"
+                            className="inline-flex h-12 items-center justify-center gap-2 rounded-md border border-white/70 bg-white/10 px-8 text-base font-semibold text-white shadow-md shadow-slate-950/20 backdrop-blur-sm transition-all duration-200 hover:bg-white hover:text-purple-900 active:scale-95"
+                        >
+                            <Download className="h-5 w-5" />
+                            Bajar brochure
+                        </a>
                     </motion.div>
                 </Container>
             </section>

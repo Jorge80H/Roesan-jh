@@ -21,6 +21,10 @@ const footerLinks = {
         { label: "Contacto", href: "/contacto" },
         { label: "Líneas de atención aseguradoras", href: "/lineas-asistencia" },
     ],
+    brochures: [
+        { label: "Personas", href: "/brochures/personas" },
+        { label: "Empresas", href: "/brochures/empresas" },
+    ],
 };
 
 export function Footer() {
@@ -28,7 +32,7 @@ export function Footer() {
         <footer className="relative bg-[#1e103c]/90 backdrop-blur-md text-slate-300 overflow-hidden border-t border-white/10">
             <Container>
                 {/* Main Footer Grid */}
-                <div className="grid gap-12 py-16 md:grid-cols-2 lg:grid-cols-4">
+                <div className="grid gap-12 py-16 md:grid-cols-2 lg:grid-cols-5">
                     {/* Brand Column */}
                     <div className="lg:col-span-2 space-y-6">
                         <div className="relative h-10 w-44 brightness-0 invert opacity-90">
@@ -103,6 +107,25 @@ export function Footer() {
                         </h4>
                         <ul className="space-y-3 mb-8">
                             {footerLinks.empresa.map((link) => (
+                                <li key={link.href}>
+                                    <Link
+                                        href={link.href}
+                                        className="text-sm hover:text-white transition-colors hover:translate-x-1 inline-block"
+                                    >
+                                        {link.label}
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+
+                    {/* Brochures Column */}
+                    <div>
+                        <h4 className="text-sm font-semibold uppercase tracking-wider text-white mb-6">
+                            Brochures
+                        </h4>
+                        <ul className="space-y-3">
+                            {footerLinks.brochures.map((link) => (
                                 <li key={link.href}>
                                     <Link
                                         href={link.href}
