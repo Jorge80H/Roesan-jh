@@ -5,14 +5,14 @@
  * Al completar un formulario de cotización en el sitio web, este módulo
  * crea simultáneamente un Lead y una Tarea de cotización en el CRM.
  * 
- * CRM App ID: a40fd164-ca68-4a1b-9a75-ed939ba947c6
+ * CRMREAL App ID: f25fbd1b-5972-4053-9a45-438934a9fd7a
  */
 
 import { init, tx, id } from '@instantdb/core';
 
 // Conexión exclusiva al CRM de Roesan
 // Importante: No mover a variables de entorno para evitar problemas de resolución en el cliente
-const crmDb = init({ appId: 'a40fd164-ca68-4a1b-9a75-ed939ba947c6' });
+const crmDb = init({ appId: 'f25fbd1b-5972-4053-9a45-438934a9fd7a' });
 
 interface LeadPayload {
   nombre: string;
@@ -67,6 +67,9 @@ export async function enviarLeadAlCRM(payload: LeadPayload): Promise<boolean> {
   } = payload;
   
   const newLeadId = id();
+  const interactionId = id();
+  const now = Date.now();
+  const automaticCreator = 'Sitio web de Roesan';
 
   try {
     await crmDb.transact([
@@ -77,11 +80,17 @@ export async function enviarLeadAlCRM(payload: LeadPayload): Promise<boolean> {
         phone: telefono || '',
         email: email || '',
         source: 'Sitio Web',
-        status: 'Nuevo',
+        status: 'Nuevos',
         pipeline_tipo: pipeline_tipo || 'preventa',
+        priority: 'Media',
+        score: 0,
         notes: notas || '',
         observaciones: observaciones || '',
-        createdAt: Date.now(),
+        createdBy: automaticCreator,
+        createdByEmail: '',
+        creationOrigin: 'sitio_web',
+        createdAt: now,
+        updatedAt: now,
         // Ramo / tipo de seguro
         type: type || 'persona',
         customerType: customerType || 'persona',
@@ -103,11 +112,23 @@ export async function enviarLeadAlCRM(payload: LeadPayload): Promise<boolean> {
 
       // 2. Crear la Tarea / Ticket de Cotización asociada
       tx.tasks[id()].update({
+        title: `Cotizar ${selectedProducts || type || 'seguro'}`,
         description: `Cotizar ${selectedProducts || type || 'seguro'} para: ${nombre}`,
         leadId: newLeadId,
         completed: false,
-        createdAt: Date.now(),
+        createdAt: now,
       }),
+
+      // 3. Registrar el origen automático en el timeline del Lead
+      tx.interacciones[interactionId].update({
+        leadId: newLeadId,
+        tipo: 'creacion_lead',
+        notas: 'Lead creado automáticamente desde el formulario del sitio web de Roesan.',
+        createdBy: automaticCreator,
+        metadata: { origin: 'sitio_web', source: 'Sitio Web' },
+        createdAt: now,
+      }),
+      tx.interacciones[interactionId].link({ lead: newLeadId }),
     ]);
 
     console.log('✅ Lead y tarea enviados exitosamente al CRM de Roesan.');
