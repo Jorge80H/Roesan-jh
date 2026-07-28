@@ -4,14 +4,12 @@ import { StatsSection } from "@/components/home/StatsSection";
 import { ServicesGrid } from "@/components/home/ServicesGrid";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
-import { PromoPopup } from "@/components/PromoPopup";
 import Link from "next/link";
 import { ArrowRight, MessageCircle } from "lucide-react";
 
 export default function Home() {
   return (
     <>
-      <PromoPopup />
       <Hero />
       <TrustBar />
       <ServicesGrid />
