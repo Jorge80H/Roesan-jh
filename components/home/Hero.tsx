@@ -178,8 +178,9 @@ export function Hero() {
                 open={isQuoteModalOpen}
                 onClose={() => setIsQuoteModalOpen(false)}
                 title="Cotización guiada"
+                maxWidthClassName="max-w-4xl"
             >
-                <div className="bg-[radial-gradient(circle_at_top,_rgba(81,64,141,0.28),_transparent_38%),linear-gradient(180deg,#111827_0%,#0f172a_100%)] p-4 sm:p-6 lg:p-8">
+                <div className="bg-[radial-gradient(circle_at_top,_rgba(81,64,141,0.28),_transparent_38%),linear-gradient(180deg,#111827_0%,#0f172a_100%)] p-3 sm:p-4 lg:p-5">
                     <QuoteFunnel
                         key={`hero-quote-${isQuoteModalOpen ? "open" : "closed"}`}
                         onClose={() => setIsQuoteModalOpen(false)}

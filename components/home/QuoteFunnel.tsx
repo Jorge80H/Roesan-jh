@@ -222,6 +222,21 @@ export default function QuoteFunnel({ initialType, initialProductId, variant = "
     });
   };
 
+  const selectCustomerType = (customerType: CustomerType, advance = false) => {
+    setForm((current) => ({
+      ...current,
+      customerType,
+      selectedProducts: current.customerType === customerType ? current.selectedProducts : [],
+    }));
+    setErrors((current) => {
+      if (!current.customerType) return current;
+      const nextErrors = { ...current };
+      delete nextErrors.customerType;
+      return nextErrors;
+    });
+    if (advance) setStep(2);
+  };
+
   const toggleProduct = (productId: ProductId) => {
     setForm((current) => {
       const exists = current.selectedProducts.includes(productId);
@@ -346,7 +361,7 @@ export default function QuoteFunnel({ initialType, initialProductId, variant = "
         })
       );
 
-      await enviarLeadAlCRM({
+      const crmSuccess = await enviarLeadAlCRM({
         nombre: form.customerType === "persona" ? form.firstName.trim() : form.responsibleName.trim(),
         lastName: form.customerType === "persona" ? form.lastName.trim() : "",
         telefono: leadPhone,
@@ -389,6 +404,10 @@ export default function QuoteFunnel({ initialType, initialProductId, variant = "
           .filter(Boolean)
           .join(" | "),
       });
+
+      if (!crmSuccess) {
+        throw new Error("CRMREAL no confirmó la creación del lead.");
+      }
 
       fetch("/api/lead-notify", {
         method: "POST",
@@ -553,16 +572,14 @@ export default function QuoteFunnel({ initialType, initialProductId, variant = "
             </div>
           </div>
 
-          <div className={`${compact ? "min-h-[220px]" : "min-h-[300px]"}`}>
+          <div className={compact ? "min-h-[220px]" : ""}>
           {step === 1 ? (
-            <div className={compact ? "space-y-2" : "space-y-6"}>
+            <div className={compact ? "space-y-2" : "space-y-4"}>
               <div className="grid gap-2 md:grid-cols-2">
                 <button
                   type="button"
-                  onClick={() => {
-                    setField("customerType", "persona");
-                    setField("selectedProducts", []);
-                  }}
+                  onClick={() => selectCustomerType("persona")}
+                  onDoubleClick={() => selectCustomerType("persona", true)}
                   className={`rounded-[1rem] border text-left transition-all ${compact ? "p-3" : "p-5"} ${
                     form.customerType === "persona"
                       ? "border-cyan-400 bg-cyan-400/10 shadow-[0_0_0_1px_rgba(34,211,238,0.2)]"
@@ -578,10 +595,8 @@ export default function QuoteFunnel({ initialType, initialProductId, variant = "
 
                 <button
                   type="button"
-                  onClick={() => {
-                    setField("customerType", "empresa");
-                    setField("selectedProducts", []);
-                  }}
+                  onClick={() => selectCustomerType("empresa")}
+                  onDoubleClick={() => selectCustomerType("empresa", true)}
                   className={`rounded-[1rem] border text-left transition-all ${compact ? "p-3" : "p-5"} ${
                     form.customerType === "empresa"
                       ? "border-cyan-400 bg-cyan-400/10 shadow-[0_0_0_1px_rgba(34,211,238,0.2)]"
